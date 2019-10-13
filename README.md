@@ -46,7 +46,7 @@ Show line on one log per commit with `git config format.pretty oneline`
 
 Use interactive ading with `git add -i`
 
- 
+## Cheatsheets
 
 ### Markdown Cheatsheets
 * [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet")
