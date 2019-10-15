@@ -7,10 +7,10 @@
 * PHP
 * Clean Code practices
 * Frameworks
+* Emmet
+* Python
+* C#
 * 
-*
-*
-*
 *
 *
 *
