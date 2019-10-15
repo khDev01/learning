@@ -1,4 +1,4 @@
-### Learnimg
+### To learn:
 * Git
 * HTML 
 * CSS - SASS
@@ -8,6 +8,29 @@
 * Clean Code practices
 * Frameworks
 * 
-
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
 
 
