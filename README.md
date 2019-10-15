@@ -1,3 +1,15 @@
+### Learnimg
+* Git
+* HTML 
+* CSS - SASS
+* JavaScript
+* JQUERY
+* PHP
+* Clean Code practices
+* Frameworks
+* 
+
+
 # Learning Git
 
 Use `git init` in a new directory to create a new git repository
