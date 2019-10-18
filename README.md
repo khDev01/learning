@@ -5,7 +5,7 @@
 
 [JavaScript](js.ms)
 
-[Git](lgit.md)
+[Git](git.md)
 
 [C#](c#.md)
 
