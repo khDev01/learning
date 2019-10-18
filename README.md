@@ -1,35 +1,23 @@
 ### My knowledge on:
-[HTML](learming/learn-html.md)
+[HTML](lhtml.md)
 
-[CSS](learn-css.md)
+[CSS](css.md)
 
-[JavaScript](learn-js.ms)
+[JavaScript](js.ms)
 
-[Git](learn-git.md)
+[Git](lgit.md)
 
-[C#](learn-c#.md)
+[C#](c#.md)
 
-[](learn.md)
+[](.md)
 
-[](learn.md)
+[](.md)
 
-[](learn.md)
+[](.md)
 
-[](learn.md)
+[](.md)
 
-[](learn.md)
-
-[](learn.md)
-
-[](learn.md)
-
-[](learn.md)
-
-[](learn.md)
-
-[](learn.md)
-
-[](learn.md)
+[](.md)
 
 ### To learn:
 * Git
