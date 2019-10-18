@@ -7,7 +7,7 @@
 
 [Git](learn-git.md)
 
-[](learn.md)
+[C#](learn-c#.md)
 
 [](learn.md)
 
@@ -33,7 +33,6 @@
 
 ### To learn:
 * Git
-* HTML 
 * CSS - SASS
 * JavaScript
 * JQUERY
@@ -45,25 +44,6 @@
 * C#
 * 
 *
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
+
 
 
