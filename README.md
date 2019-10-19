@@ -9,13 +9,13 @@
 
 [C#](c#.md)
 
-[](.md)
+[SDLC](sdlc.md)
 
-[](.md)
+[Python](python.md)
 
-[](.md)
+[PHP](php.md)
 
-[](.md)
+[Sass](sass.md)
 
 [](.md)
 
