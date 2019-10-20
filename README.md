@@ -1,4 +1,4 @@
-### skills:
+### Skills:
 [HTML](lhtml.md)
 
 [CSS](css.md)
