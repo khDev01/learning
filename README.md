@@ -1,4 +1,4 @@
-### My knowledge on:
+### skills:
 [HTML](lhtml.md)
 
 [CSS](css.md)
@@ -30,7 +30,6 @@
 * Emmet
 * Python
 * C#
-* 
 
 
 
