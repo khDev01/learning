@@ -1,11 +1,11 @@
 ### Skills:
-[HTML](lhtml.md)
+[HTML](/Web Development/lhtml.md)
 
-[CSS](css.md)
+[CSS](/Web Development/css.md)
 
-[JavaScript](js.ms)
+[JavaScript](/Web Development/js.ms)
 
-[Git](git.md)
+[Git](/Version Control/git.md)
 
 [C#](c#.md)
 
