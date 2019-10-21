@@ -12,28 +12,23 @@ Back to [Homepage](README.md)
 ###### H6
 
 ## Emphasis
-`*italic* or _italic_`
-*italic*
+`*italic* or _italic_`  *italic*
 
-`**bold** or __bold__`
-**bold**
+`**bold** or __bold__`  **bold**
 
-`**Bold and _italic_**`
-**Bold and _italic_**
+`**Bold and _italic_**` **Bold and _italic_**
 
-`~~skrikethrough~~`
-~~strikethrough~~
+`~~skrikethrough~~`     ~~strikethrough~~
 
 ## List
 
 ```
 1. list item 1
 2. list item 2
-  5. sub-list item
 ```
 1. list item 1
 2. list item 2
-  5. sub-list item
+<!---  Removed 5. sub-list item --->
   
 ```
 * list item 
@@ -48,7 +43,8 @@ Back to [Homepage](README.md)
 http://github.com 
 Inline [link](http://github.com )
 ```
-http://github.com 
+http://github.com automatic
+
 Inline [link](http://github.com )
 
 ## Images
