@@ -1,6 +1,8 @@
+# CSS
 
-CSS comment
-`/* comment */`
+
+CSS comments
+`/* multi-line comment */`
 
 Select
 ```
@@ -16,3 +18,6 @@ P {
 
 }
 ```
+
+Variables
+
