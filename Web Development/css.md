@@ -19,5 +19,11 @@ P {
 }
 ```
 
-Variables
+```
+Selector {
+Property: value/s;
+}
+```
 
+Variables
+`—varName`
