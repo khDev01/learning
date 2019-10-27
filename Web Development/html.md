@@ -6,3 +6,5 @@ Types of headers
 <h3> Header 3 </h3>
 <h6> Header 6 </h6>
 ```
+
+`<p> paragraph </p>
