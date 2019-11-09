@@ -20,7 +20,6 @@
 [Mark Down](markdown.md)
 
 ### To learn:
-* ~~ Markdown ~~
 * Git
 * CSS - SASS
 * JavaScript
