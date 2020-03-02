@@ -12,25 +12,15 @@
 [SDLC](sdlc.md)
 
 CSS
- [Sass](sass.md)
-
-
-
-
+ [SASS](sass.md)
 
 
 ### To learn:
 * Git
 * CSS - SASS
-* JavaScript
-* JQUERY
-* PHP
+* JavaScript, JQUERY
+* PHP, Python, C#
 * Clean Code practices
 * Frameworks
 * Emmet
-* Python
-* C#
 
-
-
-Make table
