@@ -3,19 +3,21 @@
   [CSS](/Web%20Development/css.md)
   [JavaScript](/Web%20Development/js.ms)
 
-[Git](/Version%20Control/git.md)
-
 [C#](c#.md)
+ [Python](python.md)
+ [PHP](php.md)
+ [Git](/Version%20Control/git.md) 
+ [Mark Down](markdown.md)
 
 [SDLC](sdlc.md)
 
-[Python](python.md)
+CSS
+ [Sass](sass.md)
 
-[PHP](php.md)
 
-[Sass](sass.md)
 
-[Mark Down](markdown.md)
+
+
 
 ### To learn:
 * Git
