@@ -1,7 +1,7 @@
 ### Skills:
 [HTML](/Web%20Development/html.md)
- [CSS](/Web%20Development/css.md)
- [JavaScript](/Web%20Development/js.ms)
+  [CSS](/Web%20Development/css.md)
+  [JavaScript](/Web%20Development/js.ms)
 
 [Git](/Version%20Control/git.md)
 
