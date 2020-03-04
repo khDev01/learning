@@ -1,10 +1,12 @@
 # Learning Git
 
-Use `git init` in a new directory to create a new git repository
+`git init` in a new directory to create a new git repository
 
-Use `git clone /repository/path` to open a local repository
+`git clone /repository/path` to open a local repository
 
-Add/Crate your files
+`git clone https://username@github.com/username/repository.git` clone remote repo
+
+#### Add/Crate your files
 
 Use `git add <filename>` to propose changes
 
