@@ -19,33 +19,33 @@ bool = true
 arr = [red,green,blue]
 
 
-#### arithmetic operators
+##### arithmetic operators
 \+ \- \* / % **
 
-#### assignment operators
+##### assignment operators
 = += -= /= *=
 
-#### comparison operators
+##### comparison operators
 == != === !== <= >=
 
-#### increment/decrement operators
+##### increment/decrement operators
 ++$ $++ --$ $--
 
-#### logical operators
+##### logical operators
 | logic   | operator | 
 | ------- |:-------:| 
 | and     | and  &&  | 
 | or      | or  \|\| |    
 | only one| xor      |    
 
-#### conditional statements
+##### conditional statements
 if () {}
 
 elseif () {}
 
 else () {}
 
-#### switch statements 
+##### switch statements 
 swich () {  
   case 1:   
   break;   
