@@ -46,8 +46,8 @@ elseif () {}
 else () {}
 
 #### switch statements 
-swich () { 
+swich () {  
   case 1:   
-  break; 
-  default 
+  break;   
+  default  
 }
