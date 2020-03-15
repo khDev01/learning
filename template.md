@@ -20,7 +20,7 @@ arr = [red,green,blue]
 
 
 #### arithmetic operators
-+ - * / % **
+\+ \- \* / % **
 
 #### assignment operators
 = += -= /= *=
@@ -32,11 +32,11 @@ arr = [red,green,blue]
 ++$ $++ --$ $--
 
 #### logical operators
-| logic   | operator  | 
+| logic   | operator | 
 | ------- |:-------:| 
-| and     | and | 
-| or      | or  |||    
-| only one| xor |    
+| and     | and      | 
+| or      | or  \|\| |    
+| only one| xor      |    
 
 #### conditional statements
 if () {}
