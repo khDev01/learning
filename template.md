@@ -6,17 +6,15 @@ short descrition
 
 /* multi-line comment */
 
-var
+string = "Hello";
 
-string = "Hello"
+int = 10;
 
-int = 10
+float = 15.371;
 
-float = 15.371
+bool = true;
 
-bool = true
-
-arr = [red,green,blue]
+arr = [red,green,blue];
 
 
 ##### arithmetic operators
@@ -39,11 +37,11 @@ arr = [red,green,blue]
 | only one| xor      |    
 
 ##### conditional statements
-if () {}
+if (condtion) {}
 
-elseif () {}
+elseif (condition) {}
 
-else () {}
+else (condition) {}
 
 ##### switch statements 
 swich () {  
@@ -51,3 +49,11 @@ swich () {
   break;   
   default  
 }
+
+##### loops
+for (condition) {}
+
+while (condition) {}
+
+do {}  
+while(condition) 
