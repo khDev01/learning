@@ -3,18 +3,24 @@
 short descrition
 
 // comment
+
 /* multi-line comment */
 
 var
 
 string = "Hello"
+
 int = 10
+
 float = 15.371
+
 bool = true
+
 arr = [red,green,blue]
 
+
 #### arithmetic operators
-+-*/%**
++ - * / % **
 
 #### assignment operators
 = += -= /= *=
@@ -26,8 +32,22 @@ arr = [red,green,blue]
 ++$ $++ --$ $--
 
 #### logical operators
-| logic        | operator       | 
-| ------------- |:-------------:| 
-| and      | and | 
-| or      | or |    |  
-| only one | xor      |    
+| logic   | operator  | 
+| ------- |:-------:| 
+| and     | and | 
+| or      | or  |||    
+| only one| xor |    
+
+#### conditional statements
+if () {}
+
+elseif () {}
+
+else () {}
+
+#### switch statements 
+swich () { 
+  case 1:   
+  break; 
+  default 
+}
