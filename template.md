@@ -34,7 +34,7 @@ arr = [red,green,blue]
 #### logical operators
 | logic   | operator | 
 | ------- |:-------:| 
-| and     | and      | 
+| and     | and  &&  | 
 | or      | or  \|\| |    
 | only one| xor      |    
 
