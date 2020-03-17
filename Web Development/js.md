@@ -2,7 +2,7 @@
 
 Change the behaviour of the webpage.
 
-`// comment`
+`// comment `
 ```
 /* 
 multi-line comment 
@@ -25,7 +25,7 @@ arr = [red,green,blue];
 ```
 
 ##### arithmetic operators
-\+ \- \* / % **
+`\+` `\-` `\*` `/` `%` `**`
 
 ##### assignment operators
 = += -= /= *=
