@@ -3,9 +3,11 @@
 Change the behaviour of the webpage.
 
 `// comment`
-```/* 
+```
+/* 
 multi-line comment 
-*/```
+*/
+```
 
 #### Data Types
 ```
