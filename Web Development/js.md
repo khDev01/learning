@@ -2,6 +2,26 @@
 
 Change the behaviour of the webpage.
 
+# JS
+recommended to use [let insted of var](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables#The_difference_between_var_and_let)
+dynamically typed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 `// comment `
 ```
 /* 
@@ -11,30 +31,29 @@ multi-line comment
 
 #### Data Types
 ```
-var variable;
+let variable;
 
-var string = "Hello";
+let string = "Hello";
 
-var int = 10;
+let int = 10;
 
-var float = 15.371;
+let float = 15.371;
 
-var bool = true;
+let bool = true;
 
-arr = [red,green,blue];
+let arr = [red,green,blue];
+
+let  = { name : 'Spot', breed : 'Dalmatian' };
+
+// constant
+const constant = 9;
+
+
 ```
+
 
 ##### arithmetic operators
 `\+` `\-` `\*` `/` `%` `**`
-
-##### assignment operators
-= += -= /= *=
-
-##### comparison operators
-== != === !== <= >=
-
-##### increment/decrement operators
-++$ $++ --$ $--
 
 ##### logical operators
 | logic   | operator | 
@@ -55,7 +74,7 @@ swich () {
   case 1:   
   break;   
   default  
-}
+}# JS
 
 ##### loops
 for (condition) {}
