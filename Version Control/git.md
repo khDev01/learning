@@ -16,9 +16,9 @@ To commit changes use `git commit -m "commit message"
 
 It is good practice to use a short and descriptive git message
 
-Now the changes need to your repository  with 'git push origin master`
+Now the changes need to your repository  with `git push origin master`
 
-If working on a different branch than master change master to your branch name
+If working on a different branch than master change `master` to your branch name
 
 Create a new branch and switch to it with `git checkout -b branch-name`
 
