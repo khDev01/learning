@@ -41,7 +41,7 @@ $null = null;
 `define("const", "my constant")`
 
 ##### arithmetic operators
-`\+` `\-` `\*` `/` `%` `**`
+`+` `-` `*` `/` `%` `**`
 
 ##### assignment operators
 `=` `+=` `-=` `/=` `*=`
