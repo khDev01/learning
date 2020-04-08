@@ -50,6 +50,8 @@ variable names are case sensitive
 basic output:
 echo - no return vlaue - marginly faster
 print - return value of 1 therefore can be used in expressions
+echo "echo: no return value - faster"; 
+print "print: return value 1 - one argument";
 
 echo "hello";
 print "hello";
@@ -109,8 +111,231 @@ define("nums", [   // array constant
 ]);
 echo nums[0];
 
+Operators:
+// Arithmetic + - * / % ** 
+// Assignment = += -= *= /= %=
+// Comparison == != <> === !== < > <= >= <=>
+// increm/dec ++$ $++ --$ $--
+// Logical 'and' '&&', 'or' '||', 'xor', '!'
+// String '.' for concatenation, '.=' assignment concatenation 
+$concat . $enation $assingnment .= $concatination
+// Conditional Assignment '?:' '??' 
+$ternary = expr1 ? expr2 : expr3 $nullCoalescing = expr1 ?? expr2
 
+Conditional statements
+if (condtion) {}
 
+elseif (condition) {}
+
+else (condition) {}
+
+Switch statement
+swich (x) {
+  case 1:
+    // executed if x=1
+  break; // stops code running into next case
+  case 2: 
+    // executed if x=2
+  break;
+  default
+    // executed if x!=other cases
+}
+
+loops
+for (condition) {}
+
+foreach ($array as $value) {}
+
+while (condition) {}
+
+do {}
+while(condition)
+
+func defined as:
+    block of statments that can be repeatedly used
+    not execute automatically when a page loads
+    executed by a call to the function
+User defined functions:
+function funcName(arg1, arg2, etc) {
+    code to be executed;
+}
+
+function myNum($num) {
+    echo "$num <br>";
+}
+
+myNum(1);
+myNum(10);
+
+PHP is loosely typed
+PHP automatically associates a data type to a variable, depending on its value
+PHP 7 type declarations added, therfore can specify the expected data type
+To achieve this specify declare(strict_types=1); on the first line of php file
+ <?php declare(strict_types=1); // strict requirement
+
+function addNumbers(int $a, int $b) {
+    return $a + $b;
+}
+echo addNumbers(5, "5 days");
+// since strict is enabled and "5 days" is not an integer, an error will be thrown
+?> 
+
+Arrays - 3 different types
+indexed - arrays with numeric index
+associative - arrays with named keys
+multimensional - arrays containing array/s
+
+$myArray = array("item1", "item2", "item3");
+echo count($myArray); // 3 count() func prints num of 
+
+indexed arrays
+2 ways to create indexed array:
+  indexed arrays assigned automatically (start at 0)
+    $myArray = array("item1", "item2", "item3");
+    echo "my items:" . $myArray[0] . ", " . $myArray[1] . " and " . $myArray[2] . ".";
+  or manually:
+    $myArray[0] = "item1";
+    $myArray[1] = "item2";
+    $myArray[2] = "item3";
+  loop through an indexed array:
+  $myArray = array("item1", "item2", "item3");
+  $arrlength = count($myArray);
+  for($x = 0; $x < $arrlength; $x++) {
+      echo $myArray[$x];
+      echo "<br>";
+
+associative
+2 ways to create indexed array:
+  $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+  or 
+  $age['Peter'] = "35";
+  $age['Ben'] = "37";
+  $age['Joe'] = "43"; 
+  loop through an associative array:
+  $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+  foreach($age as $x => $x_value) {
+      echo "Key=" . $x . ", Value=" . $x_value;
+      echo "<br>";
+  }
+
+multidimensional
+  store values with more than one key
+  $cars = array
+  (
+  array("Volvo",22,18),
+  array("BMW",15,13),
+  array("Saab",5,2),
+  array("Land Rover",17,15)
+  );
+  dimension of an array indicates the number of indices
+    2-dimensional array needs 2 indices to select an elment
+    3-dimensional array needs 3 indices to select an elment etc
+    echo $cars[0][0].": In stock: ".$cars[0][1].", sold: ".$cars[0][2].".<br>";
+    echo $cars[1][0].": In stock: ".$cars[1][1].", sold: ".$cars[1][2].".<br>";
+    echo $cars[2][0].": In stock: ".$cars[2][1].", sold: ".$cars[2][2].".<br>";
+    echo $cars[3][0].": In stock: ".$cars[3][1].", sold: ".$cars[3][2].".<br>";
+  We can also put a for loop inside another for loop to get the elements of the $cars array (we still have to point to the two indices):
+    for ($row = 0; $row < 4; $row++) {
+      echo "<p><b>Row number $row</b></p>";
+      echo "<ul>";
+      for ($col = 0; $col < 3; $col++) {
+        echo "<li>".$cars[$row][$col]."</li>";
+      }
+      echo "</ul>";
+    }
+
+sort functions for arrays
+sort() - sort arrays in ascending order
+rsort() - sort arrays in descending order
+asort() - sort associative arrays in ascending order, according to the value
+ksort() - sort associative arrays in ascending order, according to the key
+arsort() - sort associative arrays in descending order, according to the value
+krsort() - sort associative arrays in descending order, according to the key
+
+Supergloabls - global variables
+  some predefined vars are superglobals:
+    always accessible, regardless of scope - from ny func, class or file
+
+  PHP superglobals
+    $GLOBALS
+    $_SERVER
+    $_REQUEST
+    $_POST
+    $_GET
+    $_FILES
+    $_ENV
+    $_COOKIE
+    $_SESSION
+
+  $GLOBALS - used to access global variables from anywher in the PHP script
+    PHP stores all global variables in an array called $GLOBALS[index]
+    The index holds the name of the variable.
+    $x = 75;
+    $y = 25;
+     
+    function addition() {
+        $GLOBALS['z'] = $GLOBALS['x'] + $GLOBALS['y'];
+    }
+     
+    addition();
+    echo $z; 
+
+  $_SERVER - holds info about headers, paths, and script locations
+    some of the elements in $_SERVER:
+      echo $_SERVER['PHP_SELF'];
+      echo "<br>";
+      echo $_SERVER['SERVER_NAME'];
+      echo "<br>";
+      echo $_SERVER['HTTP_HOST'];
+      echo "<br>";
+      echo $_SERVER['HTTP_REFERER'];
+      echo "<br>";
+      echo $_SERVER['HTTP_USER_AGENT'];
+      echo "<br>";
+      echo $_SERVER['SCRIPT_NAME'];
+
+  $_REQUEST - used to collect data after submitting an HTML form
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+      Name: <input type="text" name="fname">
+      <input type="submit">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // collect value of input field
+        $name = $_REQUEST['fname'];
+        if (empty($name)) {
+            echo "Name is empty";
+        } else {
+            echo $name;
+        }
+    }
+    ?>
+
+  $_POST -sed to collect form data after submitting an HTML form with method="post"
+    also widely used to pass variables
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+      Name: <input type="text" name="fname">
+      <input type="submit">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // collect value of input field
+        $name = $_POST['fname'];
+        if (empty($name)) {
+            echo "Name is empty";
+        } else {
+            echo $name;
+        }
+    }
+    ?>
+
+  $_GET - used to collect form data after submitting an HTML form with method="get"
+    also collect data sent in the URL
+
+Forms
 GET and POST are superglobals, therefore can be accessed form any scope</p>
       both are an array of variables
       GET passed via URL
@@ -121,3 +346,5 @@ GET and POST are superglobals, therefore can be accessed form any scope</p>
 
       POST - no limit
         sentitive data 
+
+
