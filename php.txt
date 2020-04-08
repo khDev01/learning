@@ -1,0 +1,123 @@
+PHP 
+
+server scripting language (executed on server)
+
+for creating dynamic and interactive web pages
+
+PHP 7 latest
+
+Hypertext Preprocessor 
+
+PHP files can contain text, html css JavaScript and php
+
+PHP can:
+generate dynamic content
+create open write delete and close files on the server
+collect form data
+send and recieve cookies 
+add delete and modify data in a database
+control user access 
+encrypt data
+
+output html for browser, also output images, PDF files, flash movies, also any text such as XHTML and XML
+
+benefits
+runs on various platforms (Windows linux Mac OS etc)
+compatible with nearly all servers (Apache, IIS etc)
+supports many databases
+free to use and download
+easy to learn
+
+Requirments
+web host that supports PHP and MySQL
+or install a web server, PHP and MySQL on a computer
+
+syntax:
+<?php
+// code
+?>
+
+statements end with ';'
+
+// single-line comment
+#  single-line comment
+/* multi-line comment */
+
+variable syntax: '$varName'
+only start with letter or underscore
+variable names are case sensitive
+
+basic output:
+echo - no return vlaue - marginly faster
+print - return value of 1 therefore can be used in expressions
+
+echo "hello";
+print "hello";
+
+data types:
+
+$string = "Hello";
+$int = 10;
+$float = 15.371;
+$bool = true;
+$arr = array("red","green","blue");
+$noVal = null;
+class myObject {
+  
+}
+$createObject = new myObject();
+
+commonly used functions - manipulate strings
+echo strlen("four");
+echo str_word_count("two words");
+echo strrev("revesed");
+echo strpos("search position of word", "search"); //0
+echo strpos("search position of word", "word"); //19
+echo strpos("search position of word", "specific"); //false
+echo str_replace("world", "word", "world repaced"); //word replaced
+
+numbers
+functions:
+is_int()      //check if var is int:
+is_float()    //check if var is float
+is_finite()   // check numeric value is finite 
+is_infinite() // check numeric value is infinite (>PHP_FLOAT_MAX)
+is_nan()      // check if value is nan(not a number)
+is_numeric()  // true if var is number or numeric string
+              // PHP7 is numeric func returns false for numeric strings in hexidecimal form
+
+casting strings and floats into ints
+(int) or intval() // convert value to int
+
+$x = 23465.768;   // Cast string to int
+$int_cast = (int)$x;
+echo $int_cast;
+$x = "23465.768"; // Cast string to int
+$int_cast = (int)$x;
+echo $int_cast;
+
+Constants
+start with letter or underscore (no $ before name)
+unlike var constants are global
+
+define("name", "value", case-insensitive) //case-insensitive default=false
+
+define("nums", [   // array constant
+    "1",
+    "3",
+    "5"
+]);
+echo nums[0];
+
+
+
+GET and POST are superglobals, therefore can be accessed form any scope</p>
+      both are an array of variables
+      GET passed via URL
+      POST passed via HTTP POST method
+
+      Get - about 2000 chars
+        non-sensitive data
+
+      POST - no limit
+        sentitive data 
