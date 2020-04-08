@@ -336,15 +336,201 @@ Supergloabls - global variables
     also collect data sent in the URL
 
 Forms
-GET and POST are superglobals, therefore can be accessed form any scope</p>
-      both are an array of variables
-      GET passed via URL
-      POST passed via HTTP POST method
+GET and POST are superglobals</p>
+  both are an array of variables
+  GET passed via URL
+  POST passed via HTTP POST method
 
-      Get - about 2000 chars
-        non-sensitive data
+  Get - about 2000 chars
+    non-sensitive data
 
-      POST - no limit
-        sentitive data 
+  POST - no limit
+    sentitive data 
 
+  Get
+    <form action="php/forms.php" method="post">
+      Name: <input type="text" name="pname"><br>
+      <input type="submit">
+    </form>
+    forms.php
+      Welcome <?php echo $_POST["pname"]; ?><br>
+
+  POST
+      <form action="php/forms.php" method="get">
+        Name: <input type="text" name="gname"><br>
+        <input type="submit" value="submit">
+      </form>
+    forms.php
+      Welcome <?php echo $_GET["gname"]; ?><br>
+
+Form validation
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+    $_SERVER["PHP_SELF"] is a super global which returns the currently executing script
+    sends the submitted data to the page itself
+    error messages on the same page
+
+    htmlspecialchars() func converts speciau chars into HTML entities. 
+      - replaces chars like '<' '>' with '&lt' '&gt'
+      prevents eploiting code by ingecting HTMl or JS code(Cross-site Scripting attacks) in forms
+
+    Avoid $_SERVER["PHP_SELF"] exploits by using htmlspecialchars() function
+     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+  trim() func removes unnecessary chars(extra spaces, tabs, new line)
+
+  strepslashes() removes slashes
+
+      $name = $email = $gender = $comment = $website = "";
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = test_input($_POST["name"]);
+        $email = test_input($_POST["email"]);
+        $website = test_input($_POST["website"]);
+        $comment = test_input($_POST["comment"]);
+        $gender = test_input($_POST["gender"]);
+      }
+
+      function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+      }
+
+Required fields
+  can use an if else statement for each $_POST var to check if it is empty with empty(), then if empty show an error message
+  // define variables and set to empty values
+  $nameErr = $emailErr = $genderErr = $websiteErr = "";
+  $name = $email = $gender = $comment = $website = "";
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["name"])) {
+      $nameErr = "Name is required";
+    } else {
+      $name = test_input($_POST["name"]);
+    }
+
+    if (empty($_POST["email"])) {
+      $emailErr = "Email is required";
+    } else {
+      $email = test_input($_POST["email"]);
+    }
+
+    if (empty($_POST["website"])) {
+      $website = "";
+    } else {
+      $website = test_input($_POST["website"]);
+    }
+
+    if (empty($_POST["comment"])) {
+      $comment = "";
+    } else {
+      $comment = test_input($_POST["comment"]);
+    }
+
+    if (empty($_POST["gender"])) {
+      $genderErr = "Gender is required";
+    } else {
+      $gender = test_input($_POST["gender"]);
+    }
+  }
+
+Validate E-mail and URL
+  preg_match searches a string for a pattern, returns true if pattern found 
+  check name is only letters
+    $name = test_input($_POST["name"]);
+    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  filter_var() easiest way to check an email address is well-formed
+    $email = test_input($_POST["email"]);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  check URL
+    $website = test_input($_POST["website"]);
+    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+      $websiteErr = "Invalid URL";
+    }
+
+Form complete
+  to show values in input fields after submit is hit a script is added in the value attribute
+  but for textarea the script is added between its tags
+  also for radio buttons the checked attribute must be manipulated not the value attribute
+  Name: <input type="text" name="name" value="<?php echo $name;?>">
+
+  E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+
+  Website: <input type="text" name="website" value="<?php echo $website;?>">
+
+  Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+
+PHP Advanced
+Date and time
+  date() - format date and/or time
+    formats a timestamp to a readable date and time
+    return date/time from the server
+  date(format,timestamp) // timestamp default is current date and time
+  commonly used
+    echo "Today date " . date("Y/m.d-") . "<br>";
+    echo "Today day is " . date("l");
+  automatically update copyright year with date():
+    &copy; <?php echo date("Y");?>
+  time
+    echo "The time is " . date("h:i:sa");
+    H-24hr h--12hr i-mins s-secs a-am/pm
+  may set timezone if not correct due to server location:
+    date_default_timezone_set("America/New_York");
+    echo "The time is " . date("h:i:sa"); 
+  mktime() returns the Unix timestamp for a date
+  mktime(hr, min, sec, mnth, day, yr) 
+    used with date() as user defined timestamp
+    $d=mktime(11, 14, 54, 8, 12, 2014);
+      echo "Created date is " . date("Y-m-d h:i:sa", $d);
+  strtotime() convert human readable date string into Unix timestamp 
+    strtotime(time, now)
+    $d=strtotime("10:30pm April 15 2014");
+      echo "Created date is " . date("Y-m-d h:i:sa", $d);
+    strtotime() is a bit clever:
+      $d=strtotime("tomorrow");
+      echo date("Y-m-d h:i:sa", $d) . "<br>";
+
+      $d=strtotime("next Saturday");
+      echo date("Y-m-d h:i:sa", $d) . "<br>";
+
+      $d=strtotime("+3 Months");
+      echo date("Y-m-d h:i:sa", $d) . "<br>";
+    next six fridays
+      $startdate = strtotime("frdiay");
+      $enddate = strtotime("+6 weeks", $startdate);
+
+      while ($startdate < $enddate) {
+        echo date("M d", $startdate) . "<br>";
+        $startdate = strtotime("+1 week", $startdate);
+      }
+    no of days to 1st of june
+      $d1=strtotime("June 01");
+      $d2=ceil(($d1-time())/60/60/24);
+      echo "There are " . $d2 ." days until 1th of June."
+
+Include files
+  copies text/code/markut and copies it ito file the include statement was used
+  require vs include
+  require - produce a fatal error
+  include - produce warning and script will continue
+    when in a Framework CMS, or complex PHP application, alawys use 'require' to include a key file to the flow of execution
+      helps avoid compromising applications security and integrity
+
+    // echo ran as still continue
+    <h1>Welcome to my home page!</h1>
+    <?php include 'noFileExists.php';
+    echo "I have a $color $car.";
+    ?>
+
+    // not echo as php stopped
+    <h1>Welcome to my home page!</h1>
+    <?php require 'noFileExists.php';
+    echo "I have a $color $car.";
+    ?>
 
