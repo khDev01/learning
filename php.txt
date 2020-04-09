@@ -862,7 +862,7 @@ Filters advanced
         echo("$ip is not a valid IPv6 address");
     }
   Validate URL - must contain querystring
-    $url = "https://www.w3schools.com";
+    $url = "https://www.website.com";
 
     if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED) === false) {
         echo("$url is a valid URL with a query string");
@@ -875,4 +875,35 @@ Filters advanced
     $newstr = filter_var($str, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
     echo $newstr;
 PHP and JSON
-  JSON - JavaScript Object Notation
+  JSON - JavaScript Object Notation, is a syntax for storing exchanging data
+    JRON can be sent to and from a server and used as a data format by any programming language
+  PHP includes built-in functions to handle JSON
+    json_encode() - encode value to JSON format
+      $age = array("Peter"=>35, "Ben"=>37, "Joe"=>43);
+      echo json_encode($age);  //encode associative array into JSON object
+    json_decode - decode JSON object into PHP object or an associative array
+      $jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+      var_dump(json_decode($jsonobj)); // JSON data into PHP object 
+      returns objet by default, second parameter set to true Json objects are decoded into associative array
+        $jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+
+        var_dump(json_decode($jsonobj, true));
+    accessing decoded values
+      $jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+
+      $obj = json_decode($jsonobj);
+
+      echo $obj->Peter;
+      echo $obj->Ben;
+      echo $obj->Joe;
+    looping through values
+      $jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+
+      $obj = json_decode($jsonobj);
+
+      foreach($obj as $key => $value) {
+        echo $key . " => " . $value . "<br>";
+
+OOP PHP
+  PHP5+ allows oo style PHP
+  OOP is faster and easier to execute
