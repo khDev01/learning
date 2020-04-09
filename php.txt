@@ -629,3 +629,250 @@ File upload
             $uploadOk = 0;
         }
     }
+  limit file size 
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) { // larger than 500kb
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    } 
+  limit file type
+    // Allow certain file formats JPG, JPEG, PNG, and GIF files
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    } 
+
+  complete upload file PHP script
+    <?php
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+    ?>
+Cookies
+  * mainly used to identify a user
+  * small file server embeds on user's computer
+  * each time the same computer requests a page it will also send a cookie
+  * PHP can create and retrieve cookie values
+
+  setcookie() creates a cookie
+  setcookie(name, value, expire, path, domain, secure, httponly);
+    required name parameterm, others are optional
+      setcookie() must appear before <html>
+    <?php
+    $cookie_name = "user";
+    $cookie_value = "John Doe";
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+    ?>
+    <html>
+    <body>
+
+    <?php
+    if(!isset($_COOKIE[$cookie_name])) {  // isset() find out if cookie exists
+        echo "Cookie named '" . $cookie_name . "' is not set!";
+    } else {
+        echo "Cookie '" . $cookie_name . "' is set!<br>";
+        echo "Value is: " . $_COOKIE[$cookie_name];
+    }
+    ?>
+    value of the cookie is automatically URLencoded when sending the cookie, and automatically decoded when received (to prevent URLencoding, use setrawcookie() instead).
+  modify cookie 
+    use setcookie() to set again
+  delete cookie
+    use setcookie() with expiration date
+    <?php
+    // set the expiration date to one hour ago
+    setcookie("user", "", time() - 3600);
+    ?>
+    <html>
+    <body>
+
+    <?php
+    echo "Cookie 'user' is deleted.";
+    ?>
+  check if cookies are enabled
+    setcookie("test_cookie", "test", time() + 3600, '/');
+    ?>
+    <html>
+    <body>
+
+    <?php
+    if(count($_COOKIE) > 0) {
+        echo "Cookies are enabled.";
+    } else {
+        echo "Cookies are disabled.";
+    }
+    ?>
+Sessions - store info in variables to use accross multiple pages
+  unlike a cookie, not stored on the users computer
+  web server does not know who or what you do, becuase the HTTP address does not maintain state
+  by defualt session variables last until the user closes the browsers
+  for permanent storage use a database
+  Start PHP session
+    session_start() starts a session
+    required: must ve at start of document defore <html>
+    session vars are set with $_SESSION
+      <?php
+      // Start the session
+      session_start();
+      ?>
+      <!DOCTYPE html>
+      <html>
+      <body>
+
+      <?php
+      // Set session variables
+      $_SESSION["favcolor"] = "green";
+      $_SESSION["favanimal"] = "cat";
+      echo "Session variables are set.";
+      ?>
+  Get session var values
+    <?php
+    // Echo session variables that were set on previous page
+    echo "Favorite color is " . $_SESSION["favcolor"] . ".<br>";
+    echo "Favorite animal is " . $_SESSION["favanimal"] . ".";
+    ?>
+    // or
+    print_r($_SESSION);
+  Modify session var
+    overwrite it to modify
+  Destroy session
+    session_unset() - removes all session variables
+    session_destroy() - destroy the session
+Filters
+  PHP filters are used to validate and sanitize external input
+  Validating data = Determine if the data is in proper form.
+  Sanitizing data = Remove any illegal character from the data.
+  PHP filter extension includes funcs to check user input and designed to make data validation easier and quicker
+  filter_list() list what PHP filter extension offers
+  why use filters
+    web apps recieve external input which can be:
+      user input from a form 
+      cookies
+      web services data 
+      server vars
+      database query results
+    security: external data should always be validated
+      invalid submitted data may lead to security problems and break webpage
+      PHP filters make sure your app gets the correct input
+  filter_var() validates and sanitizes data
+    filters a single var with a specified filter
+    filter_var(var, check type)
+  sanitize string
+    $str = "<h1>Hello World!</h1>";
+    $newstr = filter_var($str, FILTER_SANITIZE_STRING); // removes all html tags
+    echo $newstr;
+  validate int
+    $int = 100;
+    if (!filter_var($int, FILTER_VALIDATE_INT) === false) { // check if int
+        echo("Integer is valid");
+    } else {
+        echo("Integer is not valid");
+    } // this code will return 'int not valid' with 0
+    validate int problem with '0'
+      $int = 0;
+      if (filter_var($int, FILTER_VALIDATE_INT) === 0 || !filter_var($int, FILTER_VALIDATE_INT) === false) { // check if int
+          echo("Integer is valid");
+      } else {
+          echo("Integer is not valid");
+      }
+  validate an IP address
+    $ip = "127.0.0.1";
+    if (!filter_var($ip, FILTER_VALIDATE_IP) === false) {
+        echo("$ip is a valid IP address");
+    } else {
+        echo("$ip is not a valid IP address");
+    }
+  sanitize and validate email address
+    $email = "john.doe@example.com";
+    // Remove all illegal characters from email
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    // Validate e-mail
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        echo("$email is a valid email address");
+    } else {
+        echo("$email is not a valid email address");
+    }
+  sanitize and validate URL
+    $url = "https://www.w3schools.com";
+    // Remove all illegal characters from a url
+    $url = filter_var($url, FILTER_SANITIZE_URL);
+    // Validate url
+    if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+        echo("$url is a valid URL");
+    } else {
+        echo("$url is not a valid URL");
+    }
+Filters advanced
+  validate int within a range
+    $int = 122;
+    $min = 1;
+    $max = 200;
+
+    if (filter_var($int, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
+        echo("Variable value is not within the legal range");
+    } else {
+        echo("Variable value is within the legal range");
+    }
+  Validate IPv6 address
+    $ip = "2001:0db8:85a3:08d3:1319:8a2e:0370:7334";
+
+    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === false) {
+        echo("$ip is a valid IPv6 address");
+    } else {
+        echo("$ip is not a valid IPv6 address");
+    }
+  Validate URL - must contain querystring
+    $url = "https://www.w3schools.com";
+
+    if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED) === false) {
+        echo("$url is a valid URL with a query string");
+    } else {
+        echo("$url is not a valid URL with a query string");
+    }
+  remove chars with ASCII value > 127
+    $str = "<h1>Hello WorldÆØÅ!</h1>";
+
+    $newstr = filter_var($str, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+    echo $newstr;
+PHP and JSON
+  JSON - JavaScript Object Notation
