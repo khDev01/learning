@@ -1,0 +1,36 @@
+JavaScript
+	programming language used for the web, server programs like Node.js and databases like MongoDB
+	program behaviour of web pages
+	can change HTML Content, attributes and styles(CSS)
+	Requirments: none
+
+syntax:
+<script> js code </script> // internal within html
+<script src="myScript.js"></script> // external - point to js file within html
+
+Javascript can be placed within head or body of html
+
+Output
+	display data in different ways:
+		innerHTML	- write into HTML element
+		document.write() - write into HTML output
+		window.alert() - write to alert box
+		console.log() - write to browser console 
+
+
+
+
+
+// comment
+/* multi-line comment */
+
+let variable;
+let string = "Hello";
+let int = 10;
+let float = 15.371;
+let bool = true;
+let arr = [red,green,blue];
+let  = { name : 'Spot', breed : 'Dalmatian' };
+// constant
+const constant = 9;
+
