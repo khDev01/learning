@@ -1,3 +1,4 @@
+Replace all instances of 'myArr' to 'arr' and 'myArr1' to 'arr1' etc.
 JavaScript
 	programming language used for the web, server programs like Node.js and databases like MongoDB
 	program behaviour of web pages
@@ -129,6 +130,8 @@ Obejects
 	let z = new Boolean();       // Declares z as a Boolean object
 
 	comparing JS oblects will always return false (x==y) and (x===y)
+
+	all JS obj have a toString() method
 
 	'this' keyword
 		in a function definition this refers to the owner of the functon
@@ -289,6 +292,143 @@ Number methods
 		number properties belong to the JS number object wrapper called Number
 		there properties can olny be accessed as Number.MAX_VALUE 
 			not var.MAX_VALUE, expression or value will return undefined
+Arrays
+	store multiple values in a single var
+	values can be accessed using indexes
+	creating array:
+		array literal is easiet way to create JS array
+			let array_name = [item1, item2, ...];   
+		Dont use: JS 'new' keyword also creates array
+		let cars = new Array("Saab", "Volvo", "BMW"); // use array literal instead as simpler, faster and easily readable.
+	access element of array
+		myArray[0] // selects first element
+	change array element 
+		myArray[0] = "changed";
+ 	access full array by reffering to array name
+		document.getElementById("demo").innerHTML = myArray;
+	arrays are objects
+		but best described as arrays
+		arrays use numbers to access its elements myArr[0]
+		objects use names to access its members   myObj.firstMember
+	array elements can be objects
+		variables of different types can be in the same array
+			objects, functions and arrays can all be within the same array
+	array properties and methods
+		built-in array properties and methods are very useful
+		length - returns length of array (highest index + 1)
+			myArr[0] 										//accessing first element
+			myArr[myArr.length - 1]     //accessing last element
+	loop through arrays
+		// for loop - easiest
+			var fruits, text, fLen, i;
+			fruits = ["Banana", "Orange", "Apple", "Mango"];
+			fLen = fruits.length;
+
+			text = "<ul>";
+			for (i = 0; i < fLen; i++) {
+			  text += "<li>" + fruits[i] + "</li>";
+			}
+			text += "</ul>";
+		// Array.foreach() function
+			var fruits, text;
+			fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+			text = "<ul>";
+			fruits.forEach(myFunction);
+			text += "</ul>";
+
+			function myFunction(value) {
+			  text += "<li>" + value + "</li>";
+			}
+	add array elments
+		esiest way - push()
+			var fruits = ["Banana", "Orange", "Apple", "Mango"];
+			fruits.push("Lemon");    // adds a new element (Lemon) to fruits 
+		also 'length' property
+			var fruits = ["Banana", "Orange", "Apple", "Mango"];
+			fruits[fruits.length] = "Lemon";    // adds a new element (Lemon) to fruits 
+		adding elements with a very high index(not next index) causes undefined to fill between:
+			var fruits = ["Banana", "Orange", "Apple", "Mango"];
+			fruits[6] = "Lemon";    // adds a new element (Lemon) to fruits but adds undefined
+	associative arrays  - named indexes
+		JS does not support associative arrays 
+		JS arrays are always numbered
+	array vs objects
+		arr - numbered indexes
+		obj - named indexes
+		When to use arrys or Objects
+			objects when want named elments 
+			arrays when want numbered elements
+	Avoid new Array()
+		no need to use new Array()
+		can also complicate code (produces undefined when changing)
+		use '[]' instead
+	recognize array
+		typeof - returns type object
+		Array.isArray(myArray) returns true if array
+			some browsers do not support this method
+				solved: create your own isArrau() function
+					function isArray(x) { // returns true if array
+					  return x.constructor.toString().indexOf("Array") > -1; 
+					} // actually returns true if obj protopype contains word array
+		instanceof operator returns true if an object is created by a given constructor
+			var fruits = ["Banana", "Orange", "Apple", "Mango"];
+			fruits instanceof Array;   // returns true 
+Array methods
+	toString() - converts array to string of array values seperated by comma
+		myArr.toString();
+	join() - same as toString(), but can specify the seperator
+		myArr.join(" - ")
+	popping - removing last element
+		pop() returns last element which is "popped out"
+		myArr.pop()
+	pushing - add element
+		push() returns the new array length and adds new element
+		myArr.push("newElement")
+	shifting - same as popping, but removes first element
+		shift() returns value that was "shifted out" and "shifts" all other indexes lower 
+			myArr.shift()
+		unshift() returns the new array length and adds new element to beggining of array and "unshifts" older elements
+	changing elements
+		access array elements by using their index number
+		length property is an easy way to append new elements to an array
+	deleting elements
+		delete operator deletes elments
+			delete myArr[0]
+		deleting elements replaces them with 'undefined'
+			use shift() or pop() instead
+	splicing array
+		splice() add new items and returns an array of deleted items
+			splice(indexNo, noOfElementsToRemove, newElements, newElem.., ...)
+			myArr.splice(3, 0, "myNewElement1", "myNewElement2")
+	splicing to remove elements
+		can remove elements without leaving holes in array like 'delete'
+		myArr.splice(0, 2) // removes first 2 item
+	concatenating arrays
+		concat() returns a new merged array, can take multiple arguments
+			arr1.concat(arr2);
+			arr1.concat(arr2, arr3); 
+		also take string arguments
+			arr1.concat("hello")
+	slicing array - cut out piece of array in a new array (original fine)
+		slice() returns a new array without the sliced elements
+		slice(start/ingIndex, endIndex) // second arg is optional
+		arr.slice(2) // removes third element to end element
+		arr.slice(2, 4) // removes third to fifth elements 
+	Automatic toString()
+		JS automatically convertr an array to comma seperated string when a primative value is expected 
+			this always happens when you try to outpup an array
+			both do same thing:
+				var fruits = ["Banana", "Orange", "Apple", "Mango"];
+				document.getElementById("demo").innerHTML = fruits; 
+				document.getElementById("demo").innerHTML = fruits.toString();
+	Max and Min values - no built-in feature
+Sorting arrays
+
+
+
+
+
 
 
 
