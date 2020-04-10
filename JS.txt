@@ -94,7 +94,7 @@ Function - block of code to perform a particular task
 			// cannot use myVar (outside of scope)
 
 			function myFunction() {
-			  var myVar = "hello";
+			  let myVar = "hello";
 			  // can use myVar (within scope)
 			}
 
@@ -108,7 +108,7 @@ Obejects
 			'objName.propertyName' or 'objName["propertyName"]'
 	methods are actions that can be preformed on okjects
 	a method is a function stored as a property:
-		var person = {
+		let person = {
 		  firstName: "John",
 		  lastName : "Doe",
 		  id       : 5566,
@@ -122,9 +122,9 @@ Obejects
 	Avoid declaring strings, numbers and booleans as objects 
 		* as they complicate code and slow down execution speed
 		when a var is declared with the 'new' keyword the var is created as an object
-	var x = new String();        // Declares x as a String object
-	var y = new Number();        // Declares y as a Number object
-	var z = new Boolean();       // Declares z as a Boolean object
+	let x = new String();        // Declares x as a String object
+	let y = new Number();        // Declares y as a Number object
+	let z = new Boolean();       // Declares z as a Boolean object
 
 	comparing JS oblects will always return false (x==y) and (x===y)
 
@@ -142,8 +142,8 @@ Events
 	event handlers can handle and verify, user input, user actions and browser actions
 
 Strings 
-	var squote = 'single quotes';
-	var dquote = "or double";
+	let squote = 'single quotes';
+	let dquote = "or double";
 	find length of strings with the built-in 'lenght' property
 		let txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		document.getElementById("demo").innerHTML = txt.length;
@@ -197,7 +197,7 @@ String methods
 			split("")  // split on chars
 Numbers
 	JS has only one type of number; no int, short, long, float
-	can use scientific notation for extra samll and large numbers 'var x= 12e5;'
+	can use scientific notation for extra samll and large numbers 'let x= 12e5;'
 	JS numbers are always 64-bit floating point, they are always stored as double precision floating point numbers
 	this format stores numbers in64 bits, where faction the number is stored in bits 0-51, exponent in 52-62 and the sign in 63
 	Precision
@@ -214,13 +214,28 @@ Numbers
 	Numeric strings
 		JS strings can have numeric content
 		JS will try to convert string to numbers in all numeric operations
-
-
-
-
-
-
-
+		"2" + "1" = "21" //str '+' concatinates
+		"2" - "1" = 1    //num
+		"2" * "1" = 2    //num
+		"2" / "1" = 2    //num
+	NaN - Not a Number
+		JS reserved word indicating that a numder is not a legal number
+		arithmetics with non-numeric strings result in NaN
+		1 * "hello" = NaN
+		1 * "100" = 100    // number with numeric stirng 
+		isNaN() - returns true if not a number
+		isNaN is a gloval JS function
+		NaN is a number 'typof NaN' //returns number
+	Infinity - returned if number outride of largest possible number
+		let myNumber = 2;
+			while (myNumber != Infinity) {   // Execute until Infinity
+			  myNumber = myNumber * myNumber;
+			}
+		division by zero generates 'Infinity'
+		Infinity is a number 'typeof Infinity' //returns number
+	Hexadecimal
+		JS interprets numeric constants as hexadecimal if preceded by 0x
+		let x = 0xFF // x will be 255
 
 
 
