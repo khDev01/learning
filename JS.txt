@@ -65,6 +65,8 @@ Variables
 	// constant
 	const constant = 9;
 
+		All JS datatypes have a 'valuOf()' and 'toString()' method
+
 	typeof - operator to find type of variable
 		typeof "John" // Returns "string"
 		typeof 314  // Returns "number"
@@ -235,7 +237,59 @@ Numbers
 		Infinity is a number 'typeof Infinity' //returns number
 	Hexadecimal
 		JS interprets numeric constants as hexadecimal if preceded by 0x
-		let x = 0xFF // x will be 255
+			let x = 0xFF // x will be 255
+		defualt: JS display numbers as base 10 decimals
+			but toString() output numbers form base 2 to base 36
+			hecadecimal - base 16, deciaml - base 10, octal - 8, binary - 2
+				var myNumber = 32;
+				myNumber.toString(10);  // returns 32
+				myNumber.toString(32);  // returns 10
+				myNumber.toString(16);  // returns 20
+				myNumber.toString(8);   // returns 40
+				myNumber.toString(2);   // returns 100000
+Number methods 
+	All number methods can be used on any type on numbers (literals, vars, or expressions)
+	toString() returns a number as a string
+	toExonential(charsRoundedAfterDecimal) returns string, with number rounded using exponential notation // parameter will not round number if no parameter
+	toFixed(noOfDecimals) returns a string. with specified numder of decimals
+	toPrecision() returns string, with specified number length
+	valueOf() returns a number as a number // no reason to use in your code
+	converting vars to numbers - 3 methods
+		these methods are global JS method not number methods
+		Number() - returns number, converted from argument
+		parseInt() - returns integer, from parsing argument
+		parseFloat() - returns float, from parsing argument
+
+		Number(true);      // returns 1
+		Number(false);     // returns 0
+		Number("10");      // returns 10
+		Number("10.33");   // returns 10.33
+		Number("10 33");   // returns NaN if number cannot be converted
+ 		Number(new Date("2017-09-30")); // returns 1506729600000 - milisecs since 1.1.1970
+
+ 		parseFloat, parseInt - spaces are allowed, but only first num is returned:
+			parseInt("10");         // returns 10
+			parseInt("10.33");      // returns 10
+			parseInt("10 20 30");   // returns 10
+			parseInt("10 years");   // returns 10
+			parseInt("years 10");   // returns NaN  
+
+			parseFloat("10");        // returns 10
+			parseFloat("10.33");     // returns 10.33
+			parseFloat("10 20 30");  // returns 10
+			parseFloat("10 years");  // returns 10
+			parseFloat("years 10");  // returns NaN 
+	Number properties
+	MAX_VALUE - returns largest possible number in JS
+	MIN_VALUE - returns smallest possible number in JS
+	POSITIVLE_INFINITY - represents positive infinity (returned on overflow)
+	NEGATIVE_INFINITY - represents negative infinity (returned on overflow)
+	NaN - represtents not a number value
+		number properties cannot be used on vars 
+		number properties belong to the JS number object wrapper called Number
+		there properties can olny be accessed as Number.MAX_VALUE 
+			not var.MAX_VALUE, expression or value will return undefined
+
 
 
 
