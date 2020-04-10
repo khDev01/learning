@@ -38,6 +38,8 @@ syntax:
 ?>
 
 statements end with ';'
+multiple statements alowed on one line
+whitespace is ignored
 
 // single-line comment
 #  single-line comment

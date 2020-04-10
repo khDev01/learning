@@ -1,0 +1,3 @@
+functions
+	reuse code
+	use different arguments to produce different results
