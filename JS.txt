@@ -422,16 +422,84 @@ Array methods
 				var fruits = ["Banana", "Orange", "Apple", "Mango"];
 				document.getElementById("demo").innerHTML = fruits; 
 				document.getElementById("demo").innerHTML = fruits.toString();
-	Max and Min values - no built-in feature
 Sorting arrays
-
-
-
-
-
-
-
-
+	sort() sorts array alphabetically
+	reverse() reverse the elements in array, to sort reverse alphabet use 'sort' then 'reverse'
+	numeric sort
+		Default: sort() sorts values as strings
+		A compare function can solve this problem:
+			numArr.sort(function(a, b){return a - b});  // ascending
+			numArr.sort(function(a, b){return b - a});  // descending
+			a compare function should return a negative, zero, or positive value
+				If result is negative a is sorted before b.
+				If result is positive b is sorted before a.
+				If result is 0 no changes are done with the sort order of the two values.
+			the compare function compares all values within array two at a time (a, b)
+				e.g. (30, 40) = (30 - 40) = -10 = negative = 30 is sorted before 40
+	randomly sort array
+		// example below favours some numbers over others
+		numArr.sort(function(a, b){return 0.5 - Math.random()}); // not very random
+		A popular method is the Fisher Yates shuffle, implemented in JS:
+			var points = [40, 100, 1, 5, 25, 10];
+			for (i = points.length -1; i > 0; i--) {
+			  j = Math.floor(Math.random() * i)
+			  k = points[i]
+			  points[i] = points[j]
+			  points[j] = k
+			} 
+	highest/lowest values
+		Max and Min values - no built-in feature
+		however, after sorting using the highest and lowest index values
+			but, sorting a whole array is inefficient for finding the highest/lowest value
+		arr.sort(function(a, b){return a - b});   // sort ascending
+		console.log arr[0];            //for lowest value
+		console.log arr[arr.length-1]; //for highest value
+		arr.sort(function(a, b){return b - a});  // sort descending
+		console.log arr[0];            //for highest value
+		console.log arr[arr.length-1]; //for lowest value
+		re: but, sorting a whole array is inefficient for finding the highest/lowest value
+		Math.max.apply can find highest number in array
+			function myArrayMax(arr) {
+			  return Math.max.apply(null, arr);
+			} 			// Math.max.apply(null, [1, 2, 3]) is equivalent to Math.max(1, 2, 3)
+		Math.min.apply can find lowest number in array
+			function myArrayMin(arr) {
+			  return Math.min.apply(null, arr);
+			}       //Math.min.apply(null, [1, 2, 3]) is equivalent to Math.min(1, 2, 3)
+	my min/max JS methods
+		Fastest solution is to use a user made method
+		function loops through an array comparing each value with the highest value found: 
+			function myArrayMax(arr) {
+			  var len = arr.length;
+			  var max = -Infinity;
+			  while (len--) {
+			    if (arr[len] > max) {
+			      max = arr[len];
+			    }
+			  }
+			  return max;
+			} 
+		This function loops through an array comparing each value with the lowest value found: 
+			function myArrayMin(arr) {
+			  var len = arr.length;
+			  var min = Infinity;
+			  while (len--) {
+			    if (arr[len] < min) {
+			      min = arr[len];
+			    }
+			  }
+			  return min;
+			} 
+	sorting object arrays
+		arr.sort(function(a, b){return a.property - b.property}); 
+		Comparing string properties is a little more complex:
+			cars.sort(function(a, b){
+			  var x = a.type.toLowerCase();
+			  var y = b.type.toLowerCase();
+			  if (x < y) {return -1;}
+			  if (x > y) {return 1;}
+			  return 0;
+			}); 
 
 
 
