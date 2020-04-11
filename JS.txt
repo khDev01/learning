@@ -500,6 +500,206 @@ Sorting arrays
 			  if (x > y) {return 1;}
 			  return 0;
 			}); 
+Array iteration methods
+	array iteration methods operate on every array item
+	forEach() calls a function(a callback func)  (performed on each item)
+		arr.forEach(myFunc)
+	map() creates new array, calls a function (performed on each item)
+		var numbers1 = [45, 4, 9, 16, 25];
+		var numbers2 = numbers1.map(myFunction);
+
+		function myFunction(value, index, array) { // can also just be value by itself
+		  return value * 2;
+		}
+	filter() creates a new array with array elements that passes a test
+		var numbers = [45, 4, 9, 16, 25];
+		var over18 = numbers.filter(myFunction);
+
+		function myFunction(value, index, array) {
+		  return value > 18;
+		} 
+	reduce() runs a function to produce a single value, from left to right in array
+	reduceRight() same from right to left
+		they do not reduce the original array
+		var numbers1 = [45, 4, 9, 16, 25];
+		var sum = numbers1.reduce(myFunction);
+
+		function myFunction(total, value, index, array) {
+		  return total + value;
+		} 
+	every() check if all array values pass a test
+		var numbers = [45, 4, 9, 16, 25];
+		var allOver18 = numbers.every(myFunction);
+
+		function myFunction(value, index, array) {
+		  return value > 18;
+		} 
+	some() check if some array values pass a test
+		var numbers = [45, 4, 9, 16, 25];
+		var someOver18 = numbers.some(myFunction);
+
+		function myFunction(value, index, array) {
+		  return value > 18;
+		} 
+	indexOf() searches an array for element value and returns its position
+		arr.indexOf("element", startPosition)  //returns -1 if not found
+	lastIndexOf() same as indexOf() but returns position of last occurence
+	find() returns the value of the first element that passes a test function
+	findIndex() returns the idex of the first element that passes a test function
+Dates
+	JS date object - work with dates
+		Default: 
+			* JS will use browsers time zome
+			* JS displays dates in full text string format: Wed Mar 25 2015 00:00:00 GMT+0000
+	Create date objects 
+		new Date() constructor creates date objects
+			date objects are static
+		4 ways
+			new Date()
+			new Date(year, month, day, hours, minutes, seconds, milliseconds)
+			new Date(milliseconds)
+			new Date(dateString)
+	new Date() current date and time
+	new Date(year, month, ...)  specified date and time
+		JS counts months from 0 to 11
+	Previous century
+		one and two digit years are interpreted as 19xx
+			new Date(9, 11, 24); // 1909
+			new Date(26, 11, 24); // 1926
+	new Date(dateString) creates a new date object from a date string
+	JS stores dates as milliseconds since Jan 01, 1970 00:00:00 UTC
+		1970 = zero time(milisec), 2020 = about 1586626032308 miliseconds past 1970
+	new Date(milliseconds) creates new date odbject as zero time plus milliseconds
+		new Date(0);  // 01 Jan 1970
+		new Date(100000000000); //03 March 1973 as 100000000000 + 01 Jan 1970 = 03 March 1973
+		new Date(86400000);  // 02 Jan 1970   86400000 millisec = 1 day
+	Date methods
+		date methods allow operations on date objects /// date objects can be manipulated with methods
+		when displaying a date object in HTML, its automatically converted to strig with the toString() method
+		toUTCString() converts date to UTC string (standard date display)
+		toDateString() converts a date to a more readable format
+Date formats
+	JS date input - 3 main JS date input formats
+	ISO Date - "2020-03-25" (international standard)
+	Short Date "03/25/2020" 
+	Long Date - "Mar 25 2020" or "25 Mar 2020"
+	ISO dates
+		JS preferred date format is ISO (YYYY-MM-DD)
+			new Date("2015-03-25"); // (YYYY-MM-DD)
+			new Date("2015-03"); // (YYYY-MM) allowed
+			new Date("2015"); // (YYYY) allowed
+	ISO date-time - ISO dates can be written with hrs, mins, and secs (YYYY-MM-DDTHH:MM:SSZ)
+		new Date("2015-03-25T12:00:00Z");
+			date and time is seperated with "T"
+			UTC time is defined with "Z"
+				Modify time relative to UTC without "Z", but with +HH:MM or -HH:MM 
+		UTC = GMT
+	Time zones
+		getting/setting date without specifying timezone, JS will use the browsers time zone
+	Warining:  
+		* missing zeros like "2020-3-45" may produce error
+		* behaviour of "YYYY/MM/DD" is undefined, some browsers guess and some return NaN
+		* behaviour of "DD-MM-YYYY" is undefined, some browsers guess and some return NaN
+	Long dates - "MMM DD YYYY" or "DD MMM YYYY" or month written fully
+	Date input - Parsing dates
+		Date.parse() returns milliseconds between Jan 1 1970
+			valid date string can use this method to convert it to millisecs
+		millisecs can convert it to a date object
+			let msec = Date.parse("March 21, 2012");
+			let d = new Date(msec);
+JS date method
+	getTime() returns number of millisecs since Jan 1 1970
+	getFullYear() returns year as (yyyy)
+	getMonth() returns month as number 0-11
+	getDate() returns day as number 1-31
+	getHours() returns hour 0-23
+	getMinutes() returns minute 0-59
+	getSeconds() returns second 0-59
+	getMilliSeconds() returns millisec 0-999
+	getDay() returns weekday as number 0-6
+	Date.now() returns time 
+	in JS first day of week = 0(sunday)
+		can use array to get day as a name instead of number
+			var d = new Date();
+			var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			document.getElementById("demo").innerHTML = days[d.getDay()];
+	UTC methods
+	All are same as date methods but return UTC date
+		getUTCDate() 	Same as getDate(), but returns the UTC date
+		getUTCDay() 	Same as getDay(), but returns the UTC day
+		getUTCFullYear() 	Same as getFullYear(), but returns the UTC year
+		getUTCHours() 	Same as getHours(), but returns the UTC hour
+		getUTCMilliseconds() 	Same as getMilliseconds(), but returns the UTC milliseconds
+		getUTCMinutes() 	Same as getMinutes(), but returns the UTC minutes
+		getUTCMonth() 	Same as getMonth(), but returns the UTC month
+		getUTCSeconds( )Same as getSeconds(), but returns the UTC seconds
+JS set date methods
+	setDate() 	Set the day as a number (1-31)
+	setFullYear() 	Set the year (optionally month and day)
+	setHours() 	Set the hour (0-23)
+	setMilliseconds() 	Set the milliseconds (0-999)
+	setMinutes() 	Set the minutes (0-59)
+	setMonth() 	Set the month (0-11)
+	setSeconds() 	Set the seconds (0-59)
+	setTime() 	Set the time (milliseconds since January 1, 1970)
+Math object
+	JS math object allows you to perform mathemeatical tasks on numbers
+	Math.round(x) returns value rounded do nearest int
+	Math.pow(x, y) returns value of x to power of y
+	Math.sqrt(x) returns square root 
+	Math.abs(x) returns absolute (positive) value of x
+	Math.ceil(x) returns value of x rounded up to nearest int
+	Math.floor(x) returns value of x rounded down to nearest int
+	Math.sin(x) returns sine (value between -1 and 1) of the angle x (given in radians)
+	Math.cos(x) returns cosine (value between -1 and 1) of the angle x (given in radians)
+		If you want to use degrees instead of radians, you have to convert degrees to radians:
+		Angle in radians = Angle in degrees x PI / 180.
+	Math.min() returns lowest value in list of arguments
+	Math.max() returns highest value in a list of arguments
+	Math.random() returns random number between 0 (inclusive), and 1 (exclusive):
+	Math properties (constants)
+		JS probids 8 mathematical constats that can be accesssed with the math object
+		Math.E        // returns Euler's number
+		Math.PI       // returns PI
+		Math.SQRT2    // returns the square root of 2
+		Math.SQRT1_2  // returns the square root of 1/2
+		Math.LN2      // returns the natural logarithm of 2
+		Math.LN10     // returns the natural logarithm of 10
+		Math.LOG2E    // returns base 2 logarithm of E
+		Math.LOG10E   // returns base 10 logarithm of E 
+	Math constructor
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
