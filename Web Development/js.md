@@ -2,33 +2,20 @@
 
 Change the behaviour of the webpage.
 
-recommended to use [let insted of var](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables#The_difference_between_var_and_let)
-dynamically typed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+recommended to use [let insted of var](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables#The_difference_between_var_and_let) dynamically typed
 
 # JS
-`// comment `
+
+`// comment`
+
 ```
-/* 
-multi-line comment 
+/*
+multi-line comment
 */
 ```
 
-#### Data Types
+## Data Types
+
 ```
 let variable;
 
@@ -46,39 +33,46 @@ let  = { name : 'Spot', breed : 'Dalmatian' };
 
 // constant
 const constant = 9;
-
-
 ```
 
+### arithmetic operators
 
-##### arithmetic operators
 `\+` `\-` `\*` `/` `%` `**`
 
-##### logical operators
-| logic   | operator | 
-| ------- |:-------:| 
-| and     | and  &&  | 
-| or      | or  \|\| |    
-| only one| xor      |    
+### logical operators
 
-##### conditional statements
+logic    | operator
+-------- | :------:
+and      |  and &&
+or       |   or \   | \ |
+only one |   xor
+
+### conditional statements
+
 if (condtion) {}
 
 elseif (condition) {}
 
 else (condition) {}
 
-##### switch statements 
-swich () {  
-  case 1:   
-  break;   
-  default  
+### switch statements
+
+swich () {<br>
+case 1:<br>
+break;<br>
+default<br>
 }# JS
 
-##### loops
-for (condition) {}
+### loops
 
-while (condition) {}
+<!-- for (condition) {} while (condition) {} do {} while(condition) -->
 
-do {}  
-while(condition) 
+ for (statement 1; statement 2; statement 3) { // code block to be executed }
+
+for (x in object) { text += oblect[x]; }
+
+for (variable of iterable) { // code block to be executed }
+
+while (condition) { // code block to be executed }
+
+do { // code block to be executed } while (condition);
