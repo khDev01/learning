@@ -1040,21 +1040,401 @@ JS Bitwise operations
 	<< 	Zero fill left shift		 	Shifts left by pushing zeros in from the right and let the leftmost bits fall off
 	>> 	Signed right shift 				Shifts right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
 	>>> 	Zero fill right shift 	Shifts right by pushing zeros in from the left, and let the rightmost bits fall off
+	JS use 32 bitwise operands
+		JS stores numbers as 64 bit floating toinp numbers
+		before a bitwise operation is performed JS converts numbers to 32 bit signed integers
+		after a bitwise operatino is performed the result is converted back to 64 bits JS numbers
+	Bitwise AND
+		bitwise AND returns 1 if both bits are 1
+			e.g.  one bit
+							operation 		result
+				  		0 & 0					0
+							0 & 1					0
+							1 & 0					0
+							1 & 1					1
+						4 bits
+							1111 & 0000		0000
+							1111 & 0001		0001
+							1111 & 0010		0010
+							1111 & 0100		0100
+	bitwise OR
+		bitwise OR returns 1 if one of the bits are 1
+		e.g.  one bit
+						operation 		result
+						0 | 0					0
+						0 | 1					1
+						1 | 0					1
+						1 | 1					1
+					4 bits
+					1111 | 0000			1111
+					1111 | 0001			1111
+					1111 | 0010			1111
+					1111 | 0100			1111
+	bitwise XOR
+		bitwise XOR returns 1 if the bits are different
+		e.g.  one bit
+						operation 		result
+						0 ^ 0					0
+						0 ^ 1					1
+						1 ^ 0					1
+						1 ^ 1					0
+					4 bits
+					1111 ^ 0000			1111
+					1111 ^ 0001			1110
+					1111 ^ 0010			1101
+					1111 ^ 0100			1011
+	bitwise AND (&)
+		returns 1 oniy if both bits are 1
+	bitwise OR (|)
+		returns 1 if one of the bits are 1
+	bitwise XOR (^)
+		returns 1 if bits are different
+	bitwise not (~)
+	(zero fill) bitwise left shift (<<)
+		This is a zero fill left shift. One or more zero bits are pushed in from the right, and the leftmost bits fall off
+	(sign preserving) bitwise right shift(>>)
+		This is a sign preserving right shift. Copies of the leftmost bit are pushed in from the left, and the rightmost bits fall off
+	(zero fill) bitwise right shift (>>>)
+		This is a zero fill right shift. One or more zero bits are pushed in from the left, and the rightmost bits fall off
+	Binary numbers
+		stored in two's complement formats
+		therefore negative numbes is the bitwise NOT of the number plus 1
+			binary represtnation 								decimal
+			00000000000000000000000000000101		5
+			11111111111111111111111111111011		-5
+			00000000000000000000000000000110		6
+			11111111111111111111111111111010		-6
+			00000000000000000000000000101000		40
+			11111111111111111111111111011000		-40
+	converting decimal to binary
+	function dec2bin(dec){
+		return (dec >>> 0).toString(2);
+	}
+	converting binary to decimal
+	function bin2dec(bin){
+	  return parseInt(bin, 2).toString(10);
+	}
+Regular expressions
+	sequence of chars that forms a search pattern
+	the search pattern can be used for text search and text replace operations
+	search pattern can be used to describle what seaching for
+	regular expression can be single char or a more complicated pattern
+	syn: /pattern/modifiers;
+		let patt = /hello/i;
+		/hello/i  is a regular expression.
+		hello  is a pattern (to be used in a search).
+		i  is a modifier (modifies the search to be case-insensitive)..
+	using string methods
+		inJS regular expressions normally used with two strign methods search() and replace()
+		search() uses an expsression to search for a match and returns the position of the matches
+		replace() returns a modified string where the pattern is replaced
+	using string search() with a string
+		var str = "Visit me!";
+		var n = str.search("me");
+	using string search() with a regular expression
+		var str = "Visit me";
+		var n = str.search(/me/i);
+	using string replace() with a string
+		var str = "Visit Microsoft!";
+		var res = str.replace("Microsoft", "me");
+	using string replace() with a regular expression
+		var str = "Visit Microsoft!";
+		var res = str.replace(/microsoft/i, "me");
+	Regular expression arguments (instead of string arguments) can be used in the methods above.
+	Regular expressions can make your search much more powerful (case insensitive for example).
+	Regular expression modifiers
+	i case insensitive, g tloabal match m perform multiline matching
+	Regular expression patterns
+	[abc] 	Find any of the characters between the brackets
+	[0-9] 	Find any of the digits between the brackets
+	(x|y) 	Find any of the alternatives separated with |
 
+	Metacharacters are characters with a special meaning:
+	Metacharacter 	Description
+	\d 	Find a digit
+	\s 	Find a whitespace character
+	\b 	Find a match at the beginning of a word like this: \bWORD, or at the end of a word like this: WORD\b
 
+	\uxxxx 	Find the Unicode character specified by the hexadecimal number xxxx
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
+	Quantifiers define quantities:
+	Quantifier 	Description
+	n+ 	Matches any string that contains at least one n
+	n* 	Matches any string that contains zero or more occurrences of n
+	n? 	Matches any string that contains zero or one occurrences of n
+	using the RegExp object
+		in Js the regExp object is a regular expression object with predefined properties and methods
+	using test()
+		test() method is a RegExp expression method
+			searches for a string for a pattern and returns true or false depending on result
+			// search for 'e'
+			var patt = /e/;
+			patt.test("The best things in life are free!"); // since e is there the output is true
+				can be shortend to one line:
+					/e/.test("The best things in life are free!");
+	using exec()
+	 exec() is a RegExp expression method
+	 	It searches a string for a specified pattern, and returns the found text as an object.
+		if no match it returns null
+			// search for 'e'
+			/e/.exec("The best things in life are free!");
+Errors - throw and try to catch
+	try statement lets you test a block of code for errors.
+	catch statement lets you handle the error.
+	throw statement lets you create custom errors.
+	finally statement lets you execute code, after try and catch, regardless of the result
+	errors can happen
+		when executing JS, errors can occur
+		errors can be made by programmer, due to wrong input and other unforseeable things
+	JS try and catch
+		The try statement allows you to define a block of code to be tested for errors while it is being executed.
+		The catch statement allows you to define a block of code to be executed, if an error occurs in the try block.
+		The JavaScript statements try and catch come in pairs:
+			try {
+				Block of code to try
+			}
+			catch(err) {
+				Block of code to handle errors
+			}
+	JS throws Errors
+		when errors occur JS normally stops and generated an error message
+		this is known as JS /bthrowing an exception/b
+			JS will create a error object with two properties name and message
+	Throw statements
+		throw - create custom Errors
+			technically you can /bthrow an exception/b
+				the exception can be a JS 'string', 'Number', 'Boolean' or 'Object':
+					throw "Too big";    // throw a text
+					throw 500;          // throw a number
+		if use throw' with try' and c'atch'  you can control program flow and generate custom error messages
+	input validation example
+		This example examines input. If the value is wrong, an exception (err) is thrown.
+		The exception (err) is caught by the catch statement and a custom error message is displayed:
+			<body>
+				<p>Please input a number between 5 and 10:</p>
+				<input id="demo" type="text">
+				<button type="button" onclick="myFunction()">Test Input</button>
+				<p id="p01"></p>
+				<script>
+				function myFunction() {
+				  var message, x;
+				  message = document.getElementById("p01");
+				  message.innerHTML = "";
+				  x = document.getElementById("demo").value;
+				  try {
+				    if(x == "") throw "empty";
+				    if(isNaN(x)) throw "not a number";
+				    x = Number(x);
+				    if(x < 5) throw "too low";
+				    if(x > 10) throw "too high";
+				  }
+				  catch(err) {
+				    message.innerHTML = "Input is " + err;
+				  }
+				}
+				</script>
+			</body>
+	HTML validation
+		code above is an example
+		modern browsers oftenlly use a combination of JS built-in HTML validation, using predefined validation rules defined in HTML attriblutes:
+			<input id="demo" type="number" min="5" max="10" step="1">
+	the finally statement
+		finally statement lets you execute code, after try and catch, regardless of the result
+			syn:
+				try {
+				  Block of code to try
+				}
+				catch(err) {
+				  Block of code to handle errors
+				}
+				finally {
+				  Block of code to be executed regardless of the try / catch result
+				}
+			e.g. function myFunction() {
+					  var message, x;
+					  message = document.getElementById("p01");
+					  message.innerHTML = "";
+					  x = document.getElementById("demo").value;
+					  try {
+					    if(x == "") throw "is empty";
+					    if(isNaN(x)) throw "is not a number";
+					    x = Number(x);
+					    if(x > 10) throw "is too high";
+					    if(x < 5) throw "is too low";
+					  }
+					  catch(err) {
+					    message.innerHTML = "Error: " + err + ".";
+					  }
+					  finally {
+					    document.getElementById("demo").value = "";
+					  }
+					}
+	error object
+		JS has built in error object that probides error information when an error occurs
+		the error object probieds two usefl properteis: name and messages
+			name sets or returns an error named
+			message sets or returns an error message (string)
+		error name values - six differnt values retruned by the name property:
+			EvalError	An error has occurred in the eval() function
+			RangeError	A number "out of range" has occurred
+			ReferenceError	An illegal reference has occurred
+			SyntaxError	A syntax error has occurred
+			TypeError	A type error has occurred
+			URIError	An error in encodeURI() has occurred
+		EvalError dont use as is not used in newer versions. use SyntaxError instead
+			do not use as is old
+			use SyntaxError instead
+		RangeError is thrown if you use a number that is outside the range of legal values.
+			For example: You cannot set the number of significant digits of a number to 500.
+			var num = 1;
+				try {
+				  num.toPrecision(500);   // A number cannot have 500 significant digits
+			}
+				catch(err) {
+				  document.getElementById("demo").innerHTML = err.name;
+			}
+		ReferenceError is thrown if you use (reference) a variable that has not been declared:
+			var x;
+			try {
+			  x = y + 1;   // y cannot be referenced (used)
+			}
+			catch(err) {
+			  document.getElementById("demo").innerHTML = err.name;
+			}
+		SyntaxError is thrown if you try to evaluate code with a syntax error.
+		 	try {
+		  	eval("alert('Hello)");   // Missing ' will produce an error
+		 	}
+		 	catch(err) {
+		  	document.getElementById("demo").innerHTML = err.name;
+		 	}
+		TypeError is thrown if you use a value that is outside the range of expected types
+			var num = 1;
+			try {
+			  num.toUpperCase();   // You cannot convert a number to upper case
+			}
+			catch(err) {
+			  document.getElementById("demo").innerHTML = err.name;
+			}
+		URIError (Uniform Resource Identifier) is thrown if you use illegal characters in a URI function:
+			try {
+			  decodeURI("%%%");   // You cannot URI decode percent signs
+			}
+			catch(err) {
+			  document.getElementById("demo").innerHTML = err.name;
+			}
+Scope - 2 types local and global
+	function scope, each function creates a new Scope
+	scope determines accessiblity of Variables
+	local Scope
+		defined within function beconme local to function
+	global Scope
+		decalred outside function is glocal and all scripts and functions on a web page can access it
+	Variables
+		objects and functions are also variables
+		scope can determine the accessibility of these
+	automatically gloval
+		assingnineg a value to var that isnt becalred it will automatically be blobal
+		myFunction();
+		// code here can use carName
+		function myFunction() {
+			carName = "Volvo";
+		}
+	strict mode
+		all modern browsers support JS in strict mode
+		undeclared vars are not automatically global in strict mode
+	global vars in html
+		With JavaScript, the global scope is the complete JavaScript environment.
+		In HTML, the global scope is the window object. All global variables belong to the window object
+			var carName = "Volvo";
+			// code here can use window.carName
+	Warining
+		dont create global vars unless intended
+		global vars or functions can overite window vars or functions
+		 any function including the window oblect can oberwrite your global cars and functions
+	variable lifetime
+		start - when var decalared
+		end - local vars deleted when function is completed
+		end - global vars deleted when you close the browser Window
+	function arguments - (parametres) work as local vars within functins
+JS hoisting - best practice is to declare and initialize vars at top of scopes and don't hoist
+JS hoisting - hosting is JS's default behavior of moving declarations to the top
+	JS declarations are hoised
+		variable can be declared after it has been used aka variable can be used before it has been decalared
+			x = 5; // Assign 5 to x
+			elem = document.getElementById("demo"); // Find an element
+			elem.innerHTML = x;                     // Display x in the element
+			var x; // Declare x
+		hoisting is JS default behaviour of moving all adeclarations to the top of the current scope(script of current function)
+	let and const keywords
+		vars and constants decalred with let or const are not hoisted
+	JS initilixations are not hoisted
+		JS only hoists declarations not initilizations
+			var x = 5; // Initialize x
+			elem = document.getElementById("demo"); // Find an element
+			elem.innerHTML = x + " " + y;           // Display x and y is undefined
+			var y = 7; // Initialize y
+		y is undefiend as only the declaration not the initilization =7 is hoisted
+		because y is declared before used y is undefined
+		this is the same as
+			var x = 5; // Initialize x
+			var y;     // Declare y
+			elem = document.getElementById("demo"); // Find an element
+			elem.innerHTML = x + " " + y;           // Display x and y
+			y = 7;    // Assign 7 to y
+		hoisting is not used often or at all as can cuase errors
+			this is due to debs not understanding, therefore causing bugs
+			therefore always declare vars at beginning of scopes
+Strict mode
+	'"use strict";' Defines that JavaScript code should be executed in "strict mode"
+	The "use strict" Directive
+		it is not a statement but a literal expression
+		indicated that code should be executed in strict mode
+		strict mode - cannot use undeclared variables
+	helps write cleaner code by prevweneting undeclared variables
+	declaring strict mode
+		strict mode decalred by adding "use strict"; to the beginning of a script or a function.
+		Declared at the beginning of a script, it has global scope, (so all code in the script will execute in stxit mode)
+		Declared inside a function, it has local scope (only the code inside the function is in strict mode):
+	why strict mode?
+		esier to write secure JS
+		changes previous bad syntax into real Errors
+		In strict mode, any assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object, will throw an error.
+	strict mode rules / not allowed in strict mode
+		using variables without declaring
+		deleting an var/obj is not allowed
+		deleting functions are not allowed
+		duplicating a parameter name is not allowed
+		octal numeral literals are not allowed
+		octal escape chars are not allowed
+		writing to a read only property or get only property is not allowed
+		deleting an undeletable property is not allowed
+		'eval' cannot be used as variable name
+		'arguments' cannot be used as var name
+		'with' statment is not allowed
+		eval() is not allowed to create vars in the scope from which it was called for security reasons
+		'this' keyword in functions behaves differently in strict mode.
+		'this'  keyword refers to the object that called the function.
+		If the object is not specified, functions in strict mode will return undefined and functions in normal mode will return the global object (window):
+	Future proof
+		keywords reserved for suture JS versions can not be used as var name in strict mode:
+		  * implements
+		  * interface
+		  * let
+		  * package
+		  * private
+		  * protected
+		  * public
+		  * static
+		  * yield
+this keyword
+	this refers to the object it belongs to
+	It has different values depending on where it is used:
+    In a method, this refers to the owner object.
+    Alone, this refers to the global object.
+    In a function, this refers to the global object.
+    In a function, in strict mode, this is undefined.
+    In an event, this refers to the element that received the event.
+    Methods like call(), and apply() can refer this to any object.
+let
+	provides block scope variables (and constants) in JavaScript.
