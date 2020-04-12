@@ -1356,7 +1356,7 @@ Scope - 2 types local and global
 		start - when var decalared
 		end - local vars deleted when function is completed
 		end - global vars deleted when you close the browser Window
-	function arguments - (parametres) work as local vars within functins
+	function arguments - (parametres) work as local vars within functions
 JS hoisting - best practice is to declare and initialize vars at top of scopes and don't hoist
 JS hoisting - hosting is JS's default behavior of moving declarations to the top
 	JS declarations are hoised
@@ -1437,4 +1437,1254 @@ this keyword
     In an event, this refers to the element that received the event.
     Methods like call(), and apply() can refer this to any object.
 let
-	provides block scope variables (and constants) in JavaScript.
+	can use block scope, variables (and constants) in JavaScript.
+	var with let can have block scope
+	{
+		let x = 2;
+	}
+	// x can NOT be used here
+	use let as it is better
+	In HTML, the global scope is the window object.
+		Global variables defined with the let keyword do not belong to the window object
+	Variables defined with let are not hoisted to the topUsing a let variable before it is declared will result in a ReferenceError
+const
+	must be assigned when declared
+	cannot be reassigned
+	declaring a variable with const is similar to let when it comes to Block Scope.
+	not real constants
+		const does not define a constant value, it defines a constant reference to a value
+		therefore, we cannot chage the constant primitive values but we can chgne the properties of constant objects
+Arrow functions -new ES6
+	allow us to write shorter function syntax:
+		hello = () => {
+			return "Hello World!";
+		}
+		instead of older:
+			hello = function() {
+				return "Hello World!";
+			}
+	can make it even shorter of func has only one statment and retruns a value
+		hello = () => "Hello World!";  // semove brackets and retrun keyword
+		parameters go inside '()'
+			hello = (val) => "Hello " + val;
+				can make even shorter if only one parameter skip the '()'
+					hello = val => "Hello " + val;
+	'this' in arrow functions
+		there is no binding of 'this' in arrow functions
+		In regular functions the this keyword represented the object that called the function, which could be the window, the document, a button or whatever.
+		With arrow functions the this keyword always represents the object that defined the arrow function.
+		Let us take a look at two examples to understand the difference.
+		Both examples call a method twice, first when the page loads, and once again when the user clicks a button.
+		The first example uses a regular function, and the second example uses an arrow function.
+		The result shows that the first example returns two different objects (window and button), and the second example returns the window object twice, because the window object is the "owner" of the function.
+classes - new ES6
+	class is a type of function, but we use 'class' keyword and properties are assigned inside a constructor() method
+	class definition
+		use'class' to create a class, and always add the constructor() method
+			as the constructor method is called each time the class object is initialized
+			class Car {
+			  constructor(brand) {
+			    this.carname = brand;
+			  }
+			}
+			myObjcar = new Car("Ford");
+	methods
+	The constructor method is special, it is where you initialize properties, it is called automatically when a class is initiated, and it has to have the exact name "constructor", in fact, if you do not have a constructor method, JavaScript will add an invisible and empty constructor method.
+	You are also free to make your own methods, the syntax should be familiar:
+		class Car {
+		  constructor(brand) {
+		    this.carname = brand;
+		  }
+		  present() {
+		    return "I have a " + this.carname;
+		  }
+		}
+		mycar = new Car("Ford");
+		document.getElementById("demo").innerHTML = mycar.present();
+	Static Methods
+		Static methods are defined on the class itself, and not on the prototype.
+		That means you cannot call a static method on the object (mycar), but on the class (Car):
+		class Car {
+		  constructor(brand) {
+		    this.carname = brand;
+		  }
+		  static hello() {
+		    return "Hello!!";
+		  }
+		}
+		mycar = new Car("Ford");
+		//Call 'hello()' on the class Car:
+		document.getElementById("demo").innerHTML = Car.hello();
+		//and NOT on the 'mycar' object:
+		//document.getElementById("demo").innerHTML = mycar.hello();
+		//this would raise an error.
+	Inheritance
+		To create a class inheritance, use the extends keyword.
+		A class created with a class inheritance inherits all the methods from another class:
+		Example
+		Create a class named "Model" which will inherit the methods from the "Car" class:
+		class Car {
+		  constructor(brand) {
+		    this.carname = brand;
+		  }
+		  present() {
+		    return 'I have a ' + this.carname;
+		  }
+		}
+		class Model extends Car {
+		  constructor(brand, mod) {
+		    super(brand);
+		    this.model = mod;
+		  }
+		  show() {
+		    return this.present() + ', it is a ' + this.model;
+		  }
+		}
+		mycar = new Model("Ford", "Mustang");
+		document.getElementById("demo").innerHTML = mycar.show();
+		The super() method refers to the parent class.
+		By calling the super() method in the constructor method, we call the parent's constructor method and gets access to the parent's properties and methods.
+		Inheritance is useful for code reusability: reuse properties and methods of an existing class when you create a new class.
+	Getters and Setters
+		Classes also allows you to use getters and setters.
+		It can be smart to use getters and setters for your properties, especially if you want to do something special with the value before returning them, or before you set them.
+		To add getters and setters in the class, use the get and set keywords.
+		Example
+		Create a getter and a setter for the "carname" property:
+		class Car {
+		  constructor(brand) {
+		    this.carname = brand;
+		  }
+		  get cnam() {
+		    return this.carname;
+		  }
+		  set cnam(x) {
+		    this.carname = x;
+		  }
+		}
+		mycar = new Car("Ford");
+		document.getElementById("demo").innerHTML = mycar.cnam;
+		Note: even if the getter is a method, you do not use parentheses when you want to get the property value.
+		The name of the getter/setter method cannot be the same as the name of the property, in this case carname.
+		Many programmers use an underscore character _ before the property name to separate the getter/setter from the actual property:
+		Example
+		You can use the underscore character to separate the getter/setter from the actual property:
+		class Car {
+		  constructor(brand) {
+		    this._carname = brand;
+		  }
+		  get carname() {
+		    return this._carname;
+		  }
+		  set carname(x) {
+		    this._carname = x;
+		  }
+		}
+		mycar = new Car("Ford");
+		document.getElementById("demo").innerHTML = mycar.carname;
+		To use a setter, use the same syntax as when you set a property value, without parentheses:
+		Example
+		Use a setter to change the carname to "Volvo":
+		class Car {
+		  constructor(brand) {
+		    this._carname = brand;
+		  }
+		  get carname() {
+		    return this._carname;
+		  }
+		  set carname(x) {
+		    this._carname = x;
+		  }
+		}
+		mycar = new Car("Ford");
+		mycar.carname = "Volvo";
+		document.getElementById("demo").innerHTML = mycar.carname;
+	Hoisting
+		Unlike functions, and other JavaScript declarations, class declarations are not hoisted.
+		That means that you must declare a class before you can use it:
+		Example
+		//You cannot use the class yet.
+		//mycar = new Car("Ford")
+		//This would raise an error.
+
+		class Car {
+		  constructor(brand) {
+		    this.carname = brand;
+		  }
+		}
+		//Now you can use the class:
+		mycar = new Car("Ford")
+		Note: For other declarations, like functions, you will NOT get an error when you try to use it before it is declared, because the default behavior of JavaScript declarations are hoisting (moving the declaration to the top).
+		"use strict"
+		The syntax in classes must be written in "strict mode".
+		You will get an error if you do not follow the "strict mode" rules.
+		Example
+		In "strict mode" you will get an error if you use a variable without declaring it:
+		class Car {
+		  constructor(brand) {
+		    i = 0;
+		    this.carname = brand;
+		  }
+		}
+debugging
+	errors can happen
+	code debugging
+		code can have syntax errors or logical errors
+		can be difficult to diagnose
+		no error messages or indications
+		debugging - searching and fixing errors
+		debugging - proccess of testing, finding and reducing bugs
+	JS debuggers
+		modern browsers have buit in JS debuggers
+		Built-in debuggers can be turned on and off, forcing errors to be reported to the user.
+		With a debugger, you can also set breakpoints (places where code execution can be stopped), and examine variables while the code is executing.
+		Normally, otherwise follow the steps at the bottom of this page, you activate debugging in your browser with the F12 key, and select "Console" in the debugger menu.
+	console.log() Method
+		console.log() to display JavaScript values in the debugger window
+	setting breakpoints
+		In the debugger window, you can set breakpoints in the JavaScript code.
+		At each breakpoint, JavaScript will stop executing, and let you examine JavaScript values.
+		After examining values, you can resume the execution of code (typically with a play button).
+			var x = 15 * 5;
+			debugger;
+			document.getElementById("demo").innerHTML = x;
+	Major Browsers' Debugging Tools
+		Normally, you activate debugging in your browser with F12, and select "Console" in the debugger menu.
+		Otherwise follow these steps:
+		Chrome
+		    Open the browser.
+		    From the menu, select "More tools".
+		    From tools, choose "Developer tools".
+		    Finally, select Console.
+		Firefox
+		    Open the browser.
+		    From the menu, select "Web Developer".
+		    Finally, select "Web Console".
+		Edge
+		    Open the browser.
+		    From the menu, select "Developer Tools".
+		    Finally, select "Console".
+		Opera
+		    Open the browser.
+		    From the menu, select "Developer".
+		    From "Developer", select "Developer tools".
+		    Finally, select "Console".
+		Safari
+		    Go to Safari, Preferences, Advanced in the main menu.
+		    Check "Enable Show Develop menu in menu bar".
+		    When the new option "Develop" appears in the menu:
+		    Choose "Show Error Console".
+Best practices
+	avoid global vars, 'new', '==' and 'eval()'
+	avoid global vars
+	Minimize the use of global variables.
+	This includes all data types, objects, and functions.
+	Global variables and functions can be overwritten by other scripts.
+	Use local variables instead, and learn how to use closures.
+	Always Declare Local Variables
+	All variables used in a function should be declared as local variables.
+
+	Local variables must be declared with the var keyword or the let keyword, otherwise they will become global variables.
+
+	Strict mode does not allow undeclared variables.
+	Declarations on Top
+
+	It is a good coding practice to put all declarations at the top of each script or function.
+
+	This will:
+
+	    Give cleaner code
+	    Provide a single place to look for local variables
+	    Make it easier to avoid unwanted (implied) global variables
+	    Reduce the possibility of unwanted re-declarations
+
+	// Declare at the beginning
+	var firstName, lastName, price, discount, fullPrice;
+
+	// Use later
+	firstName = "John";
+	lastName = "Doe";
+
+	price = 19.90;
+	discount = 0.10;
+
+	fullPrice = price * 100 / discount;
+
+	This also goes for loop variables:
+	// Declare at the beginning
+	var i;
+
+	// Use later
+	for (i = 0; i < 5; i++) {
+
+	By default, JavaScript moves all declarations to the top (JavaScript Hoisting).
+	Initialize Variables
+
+	It is a good coding practice to initialize variables when you declare them.
+
+	This will:
+
+	    Give cleaner code
+	    Provide a single place to initialize variables
+	    Avoid undefined values
+
+	// Declare and initiate at the beginning
+	var firstName = "",
+	lastName = "",
+	price = 0,
+	discount = 0,
+	fullPrice = 0,
+	myArray = [],
+	myObject = {};
+
+	Initializing variables provides an idea of the intended use (and intended data type).
+	Never Declare Number, String, or Boolean Objects
+
+	Always treat numbers, strings, or booleans as primitive values. Not as objects.
+
+	Declaring these types as objects, slows down execution speed, and produces nasty side effects:
+	Example
+	var x = "John";
+	var y = new String("John");
+	(x === y) // is false because x is a string and y is an object.
+
+	Or even worse:
+	Example
+	var x = new String("John");
+	var y = new String("John");
+	(x == y) // is false because you cannot compare objects.
+	Don't Use new Object()
+
+	    Use {} instead of new Object()
+	    Use "" instead of new String()
+	    Use 0 instead of new Number()
+	    Use false instead of new Boolean()
+	    Use [] instead of new Array()
+	    Use /()/ instead of new RegExp()
+	    Use function (){} instead of new Function()
+
+	Example
+	var x1 = {};           // new object
+	var x2 = "";           // new primitive string
+	var x3 = 0;            // new primitive number
+	var x4 = false;        // new primitive boolean
+	var x5 = [];           // new array object
+	var x6 = /()/;         // new regexp object
+	var x7 = function(){}; // new function object
+	Beware of Automatic Type Conversions
+
+	Beware that numbers can accidentally be converted to strings or NaN (Not a Number).
+
+	JavaScript is loosely typed. A variable can contain different data types, and a variable can change its data type:
+	Example
+	var x = "Hello";     // typeof x is a string
+	x = 5;               // changes typeof x to a number
+
+	When doing mathematical operations, JavaScript can convert numbers to strings:
+	Example
+	var x = 5 + 7;       // x.valueOf() is 12,  typeof x is a number
+	var x = 5 + "7";     // x.valueOf() is 57,  typeof x is a string
+	var x = "5" + 7;     // x.valueOf() is 57,  typeof x is a string
+	var x = 5 - 7;       // x.valueOf() is -2,  typeof x is a number
+	var x = 5 - "7";     // x.valueOf() is -2,  typeof x is a number
+	var x = "5" - 7;     // x.valueOf() is -2,  typeof x is a number
+	var x = 5 - "x";     // x.valueOf() is NaN, typeof x is a number
+
+	Subtracting a string from a string, does not generate an error but returns NaN (Not a Number):
+	Example
+	"Hello" - "Dolly"    // returns NaN
+	Use === Comparison
+
+	The == comparison operator always converts (to matching types) before comparison.
+
+	The === operator forces comparison of values and type:
+	Example
+	0 == "";        // true
+	1 == "1";       // true
+	1 == true;      // true
+
+	0 === "";       // false
+	1 === "1";      // false
+	1 === true;     // false
+	Use Parameter Defaults
+
+	If a function is called with a missing argument, the value of the missing argument is set to undefined.
+
+	Undefined values can break your code. It is a good habit to assign default values to arguments.
+	Example
+	function myFunction(x, y) {
+	  if (y === undefined) {
+	    y = 0;
+	  }
+	}
+
+	ECMAScript 2015 allows default parameters in the function call:
+	function (a=1, b=1) { /*function code*/ }
+
+	Read more about function parameters and arguments at Function Parameters
+	End Your Switches with Defaults
+
+	Always end your switch statements with a default. Even if you think there is no need for it.
+	Example
+	switch (new Date().getDay()) {
+	  case 0:
+	    day = "Sunday";
+	    break;
+	  case 1:
+	    day = "Monday";
+	    break;
+	  case 2:
+	    day = "Tuesday";
+	    break;
+	  case 3:
+	    day = "Wednesday";
+	    break;
+	  case 4:
+	    day = "Thursday";
+	    break;
+	  case 5:
+	    day = "Friday";
+	    break;
+	  case 6:
+	    day = "Saturday";
+	    break;
+	  default:
+	    day = "Unknown";
+	}
+	Avoid Using eval()
+
+	The eval() function is used to run text as code. In almost all cases, it should not be necessary to use it.
+
+	Because it allows arbitrary code to be run, it also represents a security problem.
+JS performance - speed your JS
+	Reduce Activity in Loops
+
+	Loops are often used in programming.
+
+	Each statement in a loop, including the for statement, is executed for each iteration of the loop.
+
+	Statements or assignments that can be placed outside the loop will make the loop run faster.
+	Bad:
+	var i;
+	for (i = 0; i < arr.length; i++) {
+	Better Code:
+	var i;
+	var l = arr.length;
+	for (i = 0; i < l; i++) {
+
+	The bad code accesses the length property of an array each time the loop is iterated.
+
+	The better code accesses the length property outside the loop and makes the loop run faster.
+	Reduce DOM Access
+
+	Accessing the HTML DOM is very slow, compared to other JavaScript statements.
+
+	If you expect to access a DOM element several times, access it once, and use it as a local variable:
+	Example
+	var obj;
+	obj = document.getElementById("demo");
+	obj.innerHTML = "Hello";
+	Reduce DOM Size
+
+	Keep the number of elements in the HTML DOM small.
+
+	This will always improve page loading, and speed up rendering (page display), especially on smaller devices.
+
+	Every attempt to search the DOM (like getElementsByTagName) will benefit from a smaller DOM.
+	Avoid Unnecessary Variables
+
+	Don't create new variables if you don't plan to save values.
+
+	Often you can replace code like this:
+	var fullName = firstName + " " + lastName;
+	document.getElementById("demo").innerHTML = fullName;
+
+	With this:
+	document.getElementById("demo").innerHTML = firstName + " " + lastName;
+	Delay JavaScript Loading
+
+	Putting your scripts at the bottom of the page body lets the browser load the page first.
+
+	While a script is downloading, the browser will not start any other downloads. In addition all parsing and rendering activity might be blocked.
+
+	The HTTP specification defines that browsers should not download more than two components in parallel.
+
+	An alternative is to use defer="true" in the script tag. The defer attribute specifies that the script should be executed after the page has finished parsing, but it only works for external scripts.
+
+	If possible, you can add your script to the page by code, after the page has loaded:
+	Example
+	<script>
+	window.onload = function() {
+	var element = document.createElement("script");
+	element.src = "myScript.js";
+	document.body.appendChild(element);
+	};
+	</script>
+	Avoid Using with
+
+	Avoid using the with keyword. It has a negative effect on speed. It also clutters up JavaScript scopes.
+
+	The with keyword is not allowed in strict mode.
+JS has reserved keywords
+JS versions
+	JS became an ECMA standard
+	ECMAScript(ES) is the official name of the language.
+	ECMAScript 3 is fully supported in all browsers.
+	ECMAScript 5 is fully supported in all modern browsers.
+
+	What is ECMAScript 5?
+
+	ECMAScript 5 is also known as ES5 and ECMAScript 2009
+
+	This chapter introduces some of the most important features of ES5.
+	ECMAScript 5 Features
+
+	These were the new features released in 2009:
+
+	    The "use strict" Directive
+	    String.trim()
+	    Array.isArray()
+	    Array.forEach()
+	    Array.map()
+	    Array.filter()
+	    Array.reduce()
+	    Array.reduceRight()
+	    Array.every()
+	    Array.some()
+	    Array.indexOf()
+	    Array.lastIndexOf()
+	    JSON.parse()
+	    JSON.stringify()
+	    Date.now()
+	    Property Getters and Setters
+	    New Object Property Methods
+
+	ECMAScript 5 Syntactical Changes
+
+	    Property access [ ] on strings
+	    Trailing commas in array and object literals
+	    Multiline string literals
+	    Reserved words as property names
+
+	The "use strict" Directive
+
+	"use strict" defines that the JavaScript code should be executed in "strict mode".
+
+	With strict mode you can, for example, not use undeclared variables.
+
+	You can use strict mode in all your programs. It helps you to write cleaner code, like preventing you from using undeclared variables.
+
+	"use strict" is just a string expression. Old browsers will not throw an error if they don't understand it.
+
+	Read more in JS Strict Mode.
+	String.trim()
+
+	String.trim() removes whitespace from both sides of a string.
+	Example
+	var str = "       Hello World!        ";
+	alert(str.trim());
+
+	Read more in JS String Methods.
+	Array.isArray()
+
+	The isArray() method checks whether an object is an array.
+	Example
+	function myFunction() {
+	  var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	  var x = document.getElementById("demo");
+	  x.innerHTML = Array.isArray(fruits);
+	}
+
+	Read more in JS Arrays.
+	Array.forEach()
+
+	The forEach() method calls a function once for each array element.
+	Example
+	var txt = "";
+	var numbers = [45, 4, 9, 16, 25];
+	numbers.forEach(myFunction);
+
+	function myFunction(value) {
+	  txt = txt + value + "<br>";
+	}
+
+	Learn more in JS Array Iteration Methods.
+	Array.map()
+
+	This example multiplies each array value by 2:
+	Example
+	var numbers1 = [45, 4, 9, 16, 25];
+	var numbers2 = numbers1.map(myFunction);
+
+	function myFunction(value) {
+	  return value * 2;
+	}
+
+	Learn more in JS Array Iteration Methods.
+	Array.filter()
+
+	This example creates a new array from elements with a value larger than 18:
+	Example
+	var numbers = [45, 4, 9, 16, 25];
+	var over18 = numbers.filter(myFunction);
+
+	function myFunction(value) {
+	  return value > 18;
+	}
+
+	Learn more in JS Array Iteration Methods.
+	Array.reduce()
+
+	This example finds the sum of all numbers in an array:
+	Example
+	var numbers1 = [45, 4, 9, 16, 25];
+	var sum = numbers1.reduce(myFunction);
+
+	function myFunction(total, value) {
+	  return total + value;
+	}
+
+	Learn more in JS Array Iteration Methods.
+	Array.reduceRight()
+
+	This example also finds the sum of all numbers in an array:
+	Example
+	var numbers1 = [45, 4, 9, 16, 25];
+	var sum = numbers1.reduceRight(myFunction);
+
+	function myFunction(total, value) {
+	  return total + value;
+	}
+
+	Learn more in JS Array Iteration Methods.
+	Array.every()
+
+	This example checks if all values are over 18:
+	Example
+	var numbers = [45, 4, 9, 16, 25];
+	var allOver18 = numbers.every(myFunction);
+
+	function myFunction(value) {
+	  return value > 18;
+	}
+
+	Learn more in JS Array Iteration Methods.
+	Array.some()
+
+	This example checks if some values are over 18:
+	Example
+	var numbers = [45, 4, 9, 16, 25];
+	var allOver18 = numbers.some(myFunction);
+
+	function myFunction(value) {
+	  return value > 18;
+	}
+
+	Learn more in JS Array Iteration Methods.
+	Array.indexOf()
+
+	Search an array for an element value and returns its position.
+	Example
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	var a = fruits.indexOf("Apple");
+
+	Learn more in JS Array Iteration Methods.
+	Array.lastIndexOf()
+
+	Array.lastIndexOf() is the same as Array.indexOf(), but searches from the end of the array.
+	Example
+	var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	var a = fruits.lastIndexOf("Apple");
+
+	Learn more in JS Array Iteration Methods.
+	JSON.parse()
+
+	A common use of JSON is to receive data from a web server.
+
+	Imagine you received this text string from a web server:
+	'{"name":"John", "age":30, "city":"New York"}'
+
+	The JavaScript function JSON.parse() is used to convert the text into a JavaScript object:
+	var obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');
+
+	Read more in our JSON Tutorial.
+	JSON.stringify()
+
+	A common use of JSON is to send data to a web server.
+
+	When sending data to a web server, the data has to be a string.
+
+	Imagine we have this object in JavaScript:
+	var obj = {"name":"John", "age":30, "city":"New York"};
+
+	Use the JavaScript function JSON.stringify() to convert it into a string.
+	var myJSON = JSON.stringify(obj);
+
+	The result will be a string following the JSON notation.
+
+	myJSON is now a string, and ready to be sent to a server:
+	Example
+	var obj = {"name":"John", "age":30, "city":"New York"};
+	var myJSON = JSON.stringify(obj);
+	document.getElementById("demo").innerHTML = myJSON;
+
+	Read more in our JSON Tutorial.
+	Date.now()
+
+	Date.now() returns the number of milliseconds since zero date (January 1. 1970 00:00:00 UTC).
+	Example
+	var timInMSs = Date.now();
+
+	Date.now() returns the same as getTime() performed on a Date object.
+
+	Learn more in JS Dates.
+	Property Getters and Setters
+
+	ES5 lets you define object methods with a syntax that looks like getting or setting a property.
+
+	This example creates a getter for a property called fullName:
+	Example
+	// Create an object:
+	var person = {
+	  firstName: "John",
+	  lastName : "Doe",
+	  get fullName() {
+	    return this.firstName + " " + this.lastName;
+	  }
+	};
+
+	// Display data from the object using a getter:
+	document.getElementById("demo").innerHTML = person.fullName;
+
+	This example creates a setter and a getter for the language property:
+	Example
+	var person = {
+	  firstName: "John",
+	  lastName : "Doe",
+	  language : "NO",
+	  get lang() {
+	    return this.language;
+	  },
+	  set lang(value) {
+	    this.language = value;
+	  }
+	};
+
+	// Set an object property using a setter:
+	person.lang = "en";
+
+	// Display data from the object using a getter:
+	document.getElementById("demo").innerHTML = person.lang;
+
+	This example uses a setter to secure upper case updates of language:
+	Example
+	var person = {
+	  firstName: "John",
+	  lastName : "Doe",
+	  language : "NO",
+	  set lang(value) {
+	    this.language = value.toUpperCase();
+	  }
+	};
+
+	// Set an object property using a setter:
+	person.lang = "en";
+
+	// Display data from the object:
+	document.getElementById("demo").innerHTML = person.language;
+
+	Learn more about Gettes and Setters in JS Object Accessors
+	New Object Property Methods
+
+	Object.defineProperty() is a new Object method in ES5.
+
+	It lets you define an object property and/or change a property's value and/or metadata.
+	Example
+	// Create an Object:
+	var person = {
+	  firstName: "John",
+	  lastName : "Doe",
+	  language : "NO",
+	};
+
+	// Change a Property:
+	Object.defineProperty(person, "language", {
+	  value: "EN",
+	  writable : true,
+	  enumerable : true,
+	  configurable : true
+	});
+
+	// Enumerate Properties
+	var txt = "";
+	for (var x in person) {
+	  txt += person[x] + "<br>";
+	}
+	document.getElementById("demo").innerHTML = txt;
+
+	Next example is the same code, except it hides the language property from enumeration:
+	Example
+	// Create an Object:
+	var person = {
+	  firstName: "John",
+	  lastName : "Doe",
+	  language : "NO",
+	};
+
+	// Change a Property:
+	Object.defineProperty(person, "language", {
+	  value: "EN",
+	  writable : true,
+	  enumerable : false,
+	  configurable : true
+	});
+
+	// Enumerate Properties
+	var txt = "";
+	for (var x in person) {
+	  txt += person[x] + "<br>";
+	}
+	document.getElementById("demo").innerHTML = txt;
+
+	This example creates a setter and a getter to secure upper case updates of language:
+	Example
+	/// Create an Object:
+	var person = {
+	  firstName: "John",
+	  lastName : "Doe",
+	  language : "NO"
+	};
+
+	// Change a Property:
+	Object.defineProperty(person, "language", {
+	  get : function() { return language },
+	  set : function(value) { language = value.toUpperCase()}
+	});
+
+	// Change Language
+	person.language = "en";
+
+	// Display Language
+	document.getElementById("demo").innerHTML = person.language;
+
+	ECMAScript 5 added a lot of new Object Methods to JavaScript:
+	ES5 New Object Methods
+	// Adding or changing an object property
+	Object.defineProperty(object, property, descriptor)
+
+	// Adding or changing many object properties
+	Object.defineProperties(object, descriptors)
+
+	// Accessing Properties
+	Object.getOwnPropertyDescriptor(object, property)
+
+	// Returns all properties as an array
+	Object.getOwnPropertyNames(object)
+
+	// Returns enumerable properties as an array
+	Object.keys(object)
+
+	// Accessing the prototype
+	Object.getPrototypeOf(object)
+
+	// Prevents adding properties to an object
+	Object.preventExtensions(object)
+	// Returns true if properties can be added to an object
+	Object.isExtensible(object)
+
+	// Prevents changes of object properties (not values)
+	Object.seal(object)
+	// Returns true if object is sealed
+	Object.isSealed(object)
+
+	// Prevents any changes to an object
+	Object.freeze(object)
+	// Returns true if object is frozen
+	Object.isFrozen(object)
+
+	Learn more in Object ECMAScript5.
+	Property Access on Strings
+
+	The charAt() method returns the character at a specified index (position) in a string:
+	Example
+	var str = "HELLO WORLD";
+	str.charAt(0);            // returns H
+
+	ECMAScript 5 allows property access on strings:
+	Example
+	var str = "HELLO WORLD";
+	str[0];                   // returns H
+
+	Property access on string might be a little unpredictable.
+
+	Read more in JS String Methods.
+	Trailing Commas
+
+	ECMAScript 5 allows trailing commas in object and array definitions:
+	Object Example
+	person = {
+	  firstName: "John",
+	  lastName: " Doe",
+	  age: 46,
+	}
+	Array Example
+	points = [
+	  1,
+	  5,
+	  10,
+	  25,
+	  40,
+	  100,
+	];
+
+	WARNING !!!
+
+	Internet Explorer 8 will crash.
+
+	JSON does not allow trailing commas.
+	JSON Objects:
+	// Allowed:
+	var person = '{"firstName":"John", "lastName":"Doe", "age":46}'
+	JSON.parse(person)
+
+	// Not allowed:
+	var person = '{"firstName":"John", "lastName":"Doe", "age":46,}'
+	JSON.parse(person)
+	JSON Arrays:
+	// Allowed:
+	points = [40, 100, 1, 5, 25, 10]
+
+	// Not allowed:
+	points = [40, 100, 1, 5, 25, 10,]
+	Strings Over Multiple Lines
+	ECMAScript 5 allows string literals over multiple lines if escaped with a backslash:
+	Example
+	"Hello \
+	Dolly!";
+
+	The \ method might not have universal support.
+	Older browsers might treat the spaces around the backslash differently.
+	Some older browsers do not allow spaces behind the \ character.
+
+	A safer way to break up a string literal, is to use string addition:
+	Example
+	"Hello " +
+	"Dolly!";
+	Reserved Words as Property Names
+
+	ECMAScript 5 allows reserved words as property names:
+	Object Example
+	var obj = {name: "John", new: "yes"}
+
+
+
+
+
+	//
+	//
+	What is ECMAScript 6?
+
+ECMAScript 6 is also known as ES6 and ECMAScript 2015.
+
+Some people call it JavaScript 6.
+
+This chapter will introduce some of the new features in ES6.
+
+    JavaScript let
+    JavaScript const
+    JavaScript Arrow Functions
+    JavaScript Classes
+    Default parameter values
+    Array.find()
+    Array.findIndex()
+    Exponentiation (**) (EcmaScript 2016)
+
+Browser Support for ES6 (ECMAScript 2015)
+
+Safari 10 and Edge 14 were the first browsers to fully support ES6:
+
+Chrome 58 	Edge 14 	Firefox 54 	Safari 10 	Opera 55
+Jan 2017 	Aug 2016 	Mar 2017 	Jul 2016 	Aug 2018
+JavaScript let
+
+The let statement allows you to declare a variable with block scope.
+Example
+var x = 10;
+// Here x is 10
+{
+  let x = 2;
+  // Here x is 2
+}
+// Here x is 10
+JavaScript const
+
+The const statement allows you to declare a constant (a JavaScript variable with a constant value).
+
+Constants are similar to let variables, except that the value cannot be changed.
+Example
+var x = 10;
+// Here x is 10
+{
+  const x = 2;
+  // Here x is 2
+}
+// Here x is 10
+
+Read more about let and const in our JavaScript Let / Const Chapter.
+Arrow Functions
+
+Arrow functions allows a short syntax for writing function expressions.
+
+You don't need the function keyword, the return keyword, and the curly brackets.
+Example
+// ES5
+var x = function(x, y) {
+   return x * y;
+}
+
+// ES6
+const x = (x, y) => x * y;
+
+Arrow functions do not have their own this. They are not well suited for defining object methods.
+
+Arrow functions are not hoisted. They must be defined before they are used.
+
+Using const is safer than using var, because a function expression is always constant value.
+
+You can only omit the return keyword and the curly brackets if the function is a single statement. Because of this, it might be a good habit to always keep them:
+Example
+const x = (x, y) => { return x * y };
+
+Learn more about Arrow Functions in our JavaScript Arrow Function chapter.
+Classes
+
+ES6 introduced classes.
+
+A class is a type of function, but instead of using the keyword function to initiate it, we use the keyword class, and the properties are assigned inside a constructor() method.
+
+Use the keyword class to create a class, and always add a constructor method.
+
+The constructor method is called each time the class object is initialized.
+Example
+
+A simple class definition for a class named "Car":
+class Car {
+  constructor(brand) {
+    this.carname = brand;
+  }
+}
+
+Now you can create objects using the Car class:
+Example
+
+Create an object called "mycar" based on the Car class:
+class Car {
+  constructor(brand) {
+    this.carname = brand;
+  }
+}
+mycar = new Car("Ford");
+
+Learn more about classes in our JavaScript Classes chapter.
+Default Parameter Values
+
+ES6 allows function parameters to have default values.
+Example
+function myFunction(x, y = 10) {
+  // y is 10 if not passed or undefined
+  return x + y;
+}
+myFunction(5); // will return 15
+Array.find()
+
+The find() method returns the value of the first array element that passes a test function.
+
+This example finds (returns the value of ) the first element that is larger than 18:
+Example
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.find(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+
+Note that the function takes 3 arguments:
+
+    The item value
+    The item index
+    The array itself
+
+Array.findIndex()
+
+The findIndex() method returns the index of the first array element that passes a test function.
+
+This example finds the index of the first element that is larger than 18:
+Example
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.findIndex(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+
+Note that the function takes 3 arguments:
+
+    The item value
+    The item index
+    The array itself
+
+New Number Properties
+
+ES6 added the following properties to the Number object:
+
+    EPSILON
+    MIN_SAFE_INTEGER
+    MAX_SAFE_INTEGER
+
+Example
+var x = Number.EPSILON;
+Example
+var x = Number.MIN_SAFE_INTEGER;
+Example
+var x = Number.MAX_SAFE_INTEGER;
+New Number Methods
+
+ES6 added 2 new methods to the Number object:
+
+    Number.isInteger()
+    Number.isSafeInteger()
+
+The Number.isInteger() Method
+
+The Number.isInteger() method returns true if the argument is an integer.
+Example
+Number.isInteger(10);        // returns true
+Number.isInteger(10.5);      // returns false
+The Number.isSafeInteger() Method
+
+A safe integer is an integer that can be exactly represented as a double precision number.
+
+The Number.isSafeInteger() method returns true if the argument is a safe integer.
+Example
+Number.isSafeInteger(10);    // returns true
+Number.isSafeInteger(12345678901234567890);  // returns false
+
+Safe integers are all integers from -(253 - 1) to +(253 - 1).
+This is safe: 9007199254740991. This is not safe: 9007199254740992.
+New Global Methods
+
+ES6 also added 2 new global number methods:
+
+    isFinite()
+    isNaN()
+
+The isFinite() Method
+
+The global isFinite() method returns false if the argument is Infinity or NaN.
+
+Otherwise it returns true:
+Example
+isFinite(10/0);       // returns false
+isFinite(10/1);       // returns true
+The isNaN() Method
+
+The global isNaN() method returns true if the argument is NaN. Otherwise it returns false:
+Example
+isNaN("Hello");       // returns true
+Exponentiation Operator
+
+The exponentiation operator (**) raises the first operand to the power of the second operand.
+Example
+var x = 5;
+var z = x ** 2;          // result is 25
+
+x ** y produces the same result as Math.pow(x,y):
+Example
+var x = 5;
+var z = Math.pow(x,2);   // result is 25
+
+JS JSON
+	JSON is a format for storing and transporting data.
+	JSON is often used when data is sent from a server to a web page.
+	What is JSON?
+
+    JSON stands for JavaScript Object Notation
+    JSON is a lightweight data interchange format
+    JSON is language independent *
+    JSON is "self-describing" and easy to understand
+
+* The JSON syntax is derived from JavaScript object notation syntax, but the JSON format is text only. Code for reading and generating JSON data can be written in any programming language.
+JSON Example
+
+This JSON syntax defines an employees object: an array of 3 employee records (objects):
+JSON Example
+{
+"employees":[
+  {"firstName":"John", "lastName":"Doe"},
+  {"firstName":"Anna", "lastName":"Smith"},
+  {"firstName":"Peter", "lastName":"Jones"}
+]
+}
+The JSON Format Evaluates to JavaScript Objects
+
+The JSON format is syntactically identical to the code for creating JavaScript objects.
+
+Because of this similarity, a JavaScript program can easily convert JSON data into native JavaScript objects.
+JSON Syntax Rules
+
+    Data is in name/value pairs
+    Data is separated by commas
+    Curly braces hold objects
+    Square brackets hold arrays
+
+JSON Data - A Name and a Value
+
+JSON data is written as name/value pairs, just like JavaScript object properties.
+
+A name/value pair consists of a field name (in double quotes), followed by a colon, followed by a value:
+"firstName":"John"
+
+JSON names require double quotes. JavaScript names do not.
+JSON Objects
+
+JSON objects are written inside curly braces.
+
+Just like in JavaScript, objects can contain multiple name/value pairs:
+{"firstName":"John", "lastName":"Doe"}
+JSON Arrays
+
+JSON arrays are written inside square brackets.
+
+Just like in JavaScript, an array can contain objects:
+"employees":[
+  {"firstName":"John", "lastName":"Doe"},
+  {"firstName":"Anna", "lastName":"Smith"},
+  {"firstName":"Peter", "lastName":"Jones"}
+]
+
+In the example above, the object "employees" is an array. It contains three objects.
+
+Each object is a record of a person (with a first name and a last name).
+Converting a JSON Text to a JavaScript Object
+
+A common use of JSON is to read data from a web server, and display the data in a web page.
+
+For simplicity, this can be demonstrated using a string as input.
+
+First, create a JavaScript string containing JSON syntax:
+var text = '{ "employees" : [' +
+'{ "firstName":"John" , "lastName":"Doe" },' +
+'{ "firstName":"Anna" , "lastName":"Smith" },' +
+'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+Then, use the JavaScript built-in function JSON.parse() to convert the string into a JavaScript object:
+var obj = JSON.parse(text);
+
+Finally, use the new JavaScript object in your page:
+Example
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML =
+obj.employees[1].firstName + " " + obj.employees[1].lastName;
+</script>
