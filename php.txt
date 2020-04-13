@@ -1,12 +1,9 @@
-PHP 
-
-server scripting language (executed on server)
-
+# PHP - Hypertext Preprocessor
+**server-side scripting** language (executed on server)
 for creating dynamic and interactive web pages
-
 PHP 7 latest
 
-Hypertext Preprocessor 
+
 
 PHP files can contain text, html css JavaScript and php
 
@@ -14,9 +11,9 @@ PHP can:
 generate dynamic content
 create open write delete and close files on the server
 collect form data
-send and recieve cookies 
+send and recieve cookies
 add delete and modify data in a database
-control user access 
+control user access
 encrypt data
 
 output html for browser, also output images, PDF files, flash movies, also any text such as XHTML and XML
@@ -29,11 +26,13 @@ free to use and download
 easy to learn
 
 Requirments
-web host that supports PHP and MySQL
+web host thatPHP
+ supports PHP and MySQL
 or install a web server, PHP and MySQL on a computer
 
 syntax:
-<?php
+<?phpPHP
+
 // code
 ?>
 
@@ -52,7 +51,7 @@ variable names are case sensitive
 basic output:
 echo - no return vlaue - marginly faster
 print - return value of 1 therefore can be used in expressions
-echo "echo: no return value - faster"; 
+echo "echo: no return value - faster";
 print "print: return value 1 - one argument";
 
 echo "hello";
@@ -67,7 +66,7 @@ $bool = true;
 $arr = array("red","green","blue");
 $noVal = null;
 class myObject {
-  
+
 }
 $createObject = new myObject();
 
@@ -84,7 +83,7 @@ numbers
 functions:
 is_int()      //check if var is int:
 is_float()    //check if var is float
-is_finite()   // check numeric value is finite 
+is_finite()   // check numeric value is finite
 is_infinite() // check numeric value is infinite (>PHP_FLOAT_MAX)
 is_nan()      // check if value is nan(not a number)
 is_numeric()  // true if var is number or numeric string
@@ -114,14 +113,14 @@ define("nums", [   // array constant
 echo nums[0];
 
 Operators:
-// Arithmetic + - * / % ** 
+// Arithmetic + - * / % **
 // Assignment = += -= *= /= %=
 // Comparison == != <> === !== < > <= >= <=>
 // increm/dec ++$ $++ --$ $--
 // Logical 'and' '&&', 'or' '||', 'xor', '!'
-// String '.' for concatenation, '.=' assignment concatenation 
+// String '.' for concatenation, '.=' assignment concatenation
 $concat . $enation $assingnment .= $concatination
-// Conditional Assignment '?:' '??' 
+// Conditional Assignment '?:' '??'
 $ternary = expr1 ? expr2 : expr3 $nullCoalescing = expr1 ?? expr2
 
 Conditional statements
@@ -136,7 +135,7 @@ swich (x) {
   case 1:
     // executed if x=1
   break; // stops code running into next case
-  case 2: 
+  case 2:
     // executed if x=2
   break;
   default
@@ -180,7 +179,7 @@ function addNumbers(int $a, int $b) {
 }
 echo addNumbers(5, "5 days");
 // since strict is enabled and "5 days" is not an integer, an error will be thrown
-?> 
+?>
 
 Arrays - 3 different types
 indexed - arrays with numeric index
@@ -188,7 +187,7 @@ associative - arrays with named keys
 multimensional - arrays containing array/s
 
 $myArray = array("item1", "item2", "item3");
-echo count($myArray); // 3 count() func prints num of 
+echo count($myArray); // 3 count() func prints num of
 
 indexed arrays
 2 ways to create indexed array:
@@ -209,10 +208,10 @@ indexed arrays
 associative
 2 ways to create indexed array:
   $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
-  or 
+  or
   $age['Peter'] = "35";
   $age['Ben'] = "37";
-  $age['Joe'] = "43"; 
+  $age['Joe'] = "43";
   loop through an associative array:
   $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
 
@@ -275,13 +274,13 @@ Supergloabls - global variables
     The index holds the name of the variable.
     $x = 75;
     $y = 25;
-     
+
     function addition() {
         $GLOBALS['z'] = $GLOBALS['x'] + $GLOBALS['y'];
     }
-     
+
     addition();
-    echo $z; 
+    echo $z;
 
   $_SERVER - holds info about headers, paths, and script locations
     some of the elements in $_SERVER:
@@ -347,7 +346,7 @@ GET and POST are superglobals</p>
     non-sensitive data
 
   POST - no limit
-    sentitive data 
+    sentitive data
 
   Get
     <form action="php/forms.php" method="post">
@@ -372,7 +371,7 @@ Form validation
     sends the submitted data to the page itself
     error messages on the same page
 
-    htmlspecialchars() func converts speciau chars into HTML entities. 
+    htmlspecialchars() func converts speciau chars into HTML entities.
       - replaces chars like '<' '>' with '&lt' '&gt'
       prevents eploiting code by ingecting HTMl or JS code(Cross-site Scripting attacks) in forms
 
@@ -439,7 +438,7 @@ Required fields
   }
 
 Validate E-mail and URL
-  preg_match searches a string for a pattern, returns true if pattern found 
+  preg_match searches a string for a pattern, returns true if pattern found
   check name is only letters
     $name = test_input($_POST["name"]);
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
@@ -484,13 +483,13 @@ Date and time
     H-24hr h--12hr i-mins s-secs a-am/pm
   may set timezone if not correct due to server location:
     date_default_timezone_set("America/New_York");
-    echo "The time is " . date("h:i:sa"); 
+    echo "The time is " . date("h:i:sa");
   mktime() returns the Unix timestamp for a date
-  mktime(hr, min, sec, mnth, day, yr) 
+  mktime(hr, min, sec, mnth, day, yr)
     used with date() as user defined timestamp
     $d=mktime(11, 14, 54, 8, 12, 2014);
       echo "Created date is " . date("Y-m-d h:i:sa", $d);
-  strtotime() convert human readable date string into Unix timestamp 
+  strtotime() convert human readable date string into Unix timestamp
     strtotime(time, now)
     $d=strtotime("10:30pm April 15 2014");
       echo "Created date is " . date("Y-m-d h:i:sa", $d);
@@ -548,7 +547,7 @@ File handling
 File open/read
   fopen() gives more options than readfile()
     fopen("file", "Mode")
-      Modes = 
+      Modes =
       r open read only    (read)
       w open write only   (writing)
       a open write only   (apending)
@@ -578,7 +577,7 @@ File open/read
         echo fgets($myfile) . "<br>";
       }
       fclose($myfile)
-  fgetc() read single char 
+  fgetc() read single char
     $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
     // Output one character until end-of-file
     while(!feof($myfile)) {
@@ -588,9 +587,9 @@ File open/read
     the fgetc() moves file pointer to next char
 File create/write
   fopen() can also create a file
-    using fopen() on a non existting, with parameters ('w'/'a') file will create it 
+    using fopen() on a non existting, with parameters ('w'/'a') file will create it
     file is created in same directory
-    fopen("testfile.txt", "w") 
+    fopen("testfile.txt", "w")
     file permissions, make sure PHP file has full access to write info or will not work
   fwrite() write to a file
     fwrite("file", string to write)
@@ -604,7 +603,7 @@ File create/write
     opening an existing file for writing will earase the data and the file will be empty
 File upload
   configure the php.ini file do allow uploads
-    edit file_uploads directive to'file_uploads = On' 
+    edit file_uploads directive to'file_uploads = On'
   HTML form
     // allow user to upload image
     <form action="upload.php" method="post" enctype="multipart/form-data">
@@ -618,7 +617,7 @@ File upload
   Upload file PHP script
     $target_dir = "uploads/"; // specifies directory where file will be placed
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); // specifies the path of the file to upload
-    $uploadOk = 1; 
+    $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); // holds sile extention (in lower case)
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
@@ -631,19 +630,19 @@ File upload
             $uploadOk = 0;
         }
     }
-  limit file size 
+  limit file size
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) { // larger than 500kb
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
-    } 
+    }
   limit file type
     // Allow certain file formats JPG, JPEG, PNG, and GIF files
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" ) {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
-    } 
+    }
 
   complete upload file PHP script
     <?php
@@ -717,7 +716,7 @@ Cookies
     }
     ?>
     value of the cookie is automatically URLencoded when sending the cookie, and automatically decoded when received (to prevent URLencoding, use setrawcookie() instead).
-  modify cookie 
+  modify cookie
     use setcookie() to set again
   delete cookie
     use setcookie() with expiration date
@@ -788,9 +787,9 @@ Filters
   filter_list() list what PHP filter extension offers
   why use filters
     web apps recieve external input which can be:
-      user input from a form 
+      user input from a form
       cookies
-      web services data 
+      web services data
       server vars
       database query results
     security: external data should always be validated
@@ -885,7 +884,7 @@ PHP and JSON
       echo json_encode($age);  //encode associative array into JSON object
     json_decode - decode JSON object into PHP object or an associative array
       $jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
-      var_dump(json_decode($jsonobj)); // JSON data into PHP object 
+      var_dump(json_decode($jsonobj)); // JSON data into PHP object
       returns objet by default, second parameter set to true Json objects are decoded into associative array
         $jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
 
