@@ -63,10 +63,375 @@ SELECT DISTINCT statement
     this will not work for ms edge and firefox as not supported in ms Access databases, use this:
     SELECT Count(*) AS DistinctCol
     FROM (SELECT DISTINCT Col FROM table_name);
-where clause
+WHERE clause
   used to filter records
-  extract only those records that fulfill a specified condition{
+  extract only those records that fulfill a specified condition
+    SELECT col1
+    FROM table_name
+    WHERE condition;  // e.g. WHERE col4='red';
+  text fields vs numeric fields
+    requires single quotes around text values
+      WHERE col2=5       WHERE col4='red'
+  operators
+    = > < >= <= <> BETWEEN LIKE IN
+AND OR and NOT operators
+  WHERE clause can be combined with these operators
+    SELECT col
+    FROM table_name
+    WHERE condition1 AND condition2 AND condition3;
+    WHERE condition1 OR condition2 OR condition3;
+    WHERE NOT condition1;
+  combining operators
+    use brakets
+      WHERE condition1 AND (condition2 OR condition3);
+    more NOT
+      WHERE NOT condition1 AND NOT condition2;
+ORDER BY keyword
+  used to sort the result-set in asc/desc order
+  default: ascending order
+    ORDER BY column1, column2, ... ASC|DESC;   // default is asc so only specify when desc
+  several coluns
+    order columns differently
+      ORDER BY column1 ASC, column1 DESC;
+INSERT INTO
+  used to isert new records
+    syntax
+      //by specifying column names
+        INSERT INTO table_name (column1, column2, column3, ...)
+        VALUES (value1, value2, value3, ...);
+      // or by adding values to all columns of table, no need to specify. but your values should be in same order as the columns in the table
+        INSERT INTO table_name
+        VALUES (value1, value2, value3, ...); ..);
+    auto increment fields will be generated automatically when a new record is inserted
+NULL values
+  field with NULL = no value
+  If a field in a table is optional, it is possible to insert a new record or update a record without adding a value to this field. Then, the field will be saved with a NULL value.
+  NULL != zero or spaces,  NULL = value left blank
+  Test for NULL values
+    use IS NULL and not comparison operators
+      WHERE column_name IS NULL;
+      WHERE column_name IS NOT NULL;
+  IS NOT NULL operator
+    used to test for non-empty values
+      WHERE column_name IS NOT NULL;
+UPDATE statement
+  modify existing records in a table
+  syntax
+    UPDATE table_name
+    SET column1 = value1, column2 = value2, ...
+    WHERE condition;
+  Warning:
+    WHERE clause specifies record/s to update, if ommited then all records will be updated
+  Update multiple records
+    WHERE clause determines how many records will be updated
+      UPDATE table_name
+      SET column1 = value1
+      WHERE condition;
+DELETE statement
+  delete existing record
+  syntax
+    DELETE FROM table_name WHERE condition;
+  Warning
+    ommiting the WHERE clase will delete all records
+  delete all records
+    this deletes all rows without deleting the table
+      therefore table's Structure, attributes and indexes will be intact
+    DELETE FROM table_name;
+SELECT TOP Clause
+  used to specify the number of records to return
+  useful on large tables with thousands of records. Returning a large number of records can impact performance
+  not all database Systems support the SELECT TOP Clause:
+    SQL Server / MS Access Syntax:
+      SELECT TOP number|percent column_name(s)
+      FROM table_name
+      WHERE condition;
+
+      // select first 3 records
+      SELECT TOP 3 * FROM Customers;
+      // top 50%
+      SELECT TOP 50 PERCENT * FROM Customers;
+
+    MySQL Syntax:
+      SELECT column_name(s)
+      FROM table_name
+      WHERE condition
+      LIMIT number;
+
+      // select first 3 records
+      SELECT * FROM Customers
+      LIMIT 3;
+
+    Oracle Syntax:
+      SELECT column_name(s)
+      FROM table_name
+      WHERE ROWNUM <= number;
+
+      // select first 3 records
+      SELECT * FROM Customers
+      WHERE ROWNUM <= 3;
+  add a WHERE clase
+    SQL Server / MS Access Syntax:
+      SELECT TOP 3 * FROM Customers
+      WHERE Country='Germany';
+
+    MySQL Syntax:
+      SELECT * FROM Customers
+      WHERE Country='Germany'
+      LIMIT 3;
 
 
+    Oracle Syntax:
+      SELECT * FROM Customers
+      WHERE Country='Germany' AND ROWNUM <= 3;
+MIN() and MAX() Functions
+  MIN() function returns smallest value of the selected column
+  MAX() function returns largest value of the selected column
+  syntax
+    SELECT MIN|MAX(column_name)   // choose one MIN or MAX
+    FROM table_name
+    WHERE condition;
+  use
+    SELECT MIN|MAX(column_name) AS Newfield  // returns new table with a field with value
+    FROM table_name;
+COUNT(), AVG() and SUM() Functions
+  COUNT() function returns the number of rows that matches a specified criteria.
+  The AVG() function returns the average value of a numeric column.
+  The SUM() function returns the total sum of a numeric column.
+  syntax
+    SELECT COUNT|AVG|SUM(column_name)
+LIKE Operator
+  used in a WHERE clause to search for a specified pattern in a column.
+  There are two wildcards often used in conjunction with the LIKE operator:
+    % - The percent sign represents zero, one, or multiple characters
+    _ - The underscore represents a single character
+    MS Access uses '*' instead of % and ? instead of _
+  syntax
+    WHERE columnN LIKE pattern;
+  can combine AND and OR operators
+  with % and _ wildcards
+  WHERE column LIKE 'a%' // values start with a
+  WHERE column LIKE '%a'// values end with a
+  WHERE column LIKE '%ght%'// values have ght in any position
+  WHERE CustomerName LIKE '_r%' 	// values that have "r" in the second position
+  WHERE CustomerName LIKE 'a_%' 	//  values that start with "a" and are at least 2 characters in length
+  WHERE CustomerName LIKE 'a__%' 	//  values that start with "a" and are at least 3 characters in length
+  WHERE ContactName LIKE 'a%o' //  values that start with "a" and ends with "o"
+wildcards characters
+  used to substitute one or more chars in a string
+  wildcad chars are used with LIKE operator
+  Wildcard Characters in MS Access
+    Symbol 	Description 	Example
+    * 	Represents zero or more characters 	bl* finds bl, black, blue, and blob
+    ? 	Represents a single character 	h?t finds hot, hat, and hit
+    [] 	Represents any single character within the brackets 	h[oa]t finds hot and hat, but not hit
+    ! 	Represents any character not in the brackets 	h[!oa]t finds hit, but not hot and hat
+    - 	Represents a range of characters 	c[a-b]t finds cat and cbt
+    # 	Represents any single numeric character 	2#5 finds 205, 215, 225, 235, 245, 255, 265, 275, 285, and 295
+  Wildcard Characters in SQL Server
+    Symbol 	Description 	Example
+    % 	Represents zero or more characters 	bl% finds bl, black, blue, and blob
+    _ 	Represents a single character 	h_t finds hot, hat, and hit
+    [] 	Represents any single character within the brackets 	h[oa]t finds hot and hat, but not hit
+    ^ 	Represents any character not in the brackets 	h[^oa]t finds hit, but not hot and hat
+    - 	Represents a range of characters 	c[a-b]t finds cat and cbt
 
-  }
+  All the wildcards can also be used in combinations!
+
+  Here are some examples showing different LIKE operators with '%' and '_' wildcards:
+  LIKE Operator 	Description
+  WHERE CustomerName LIKE 'a%' 	Finds any values that starts with "a"
+  WHERE CustomerName LIKE '%a' 	Finds any values that ends with "a"
+  WHERE CustomerName LIKE '%or%' 	Finds any values that have "or" in any position
+  WHERE CustomerName LIKE '_r%' 	Finds any values that have "r" in the second position
+  WHERE CustomerName LIKE 'a_%_%' 	Finds any values that starts with "a" and are at least 3 characters in length
+  WHERE ContactName LIKE 'a%o' 	Finds any values that starts with "a" and ends with "o"
+IN Operator
+  allows specify multiple values in a where clause
+  short version of multiple OR conditions
+  syntax
+    WHERE column_name IN (value1, value2, ...);
+    or
+    WHERE column_name IN (SELECT STATEMENT);
+  can use with not to make NOT IN
+BETWEEN operator
+  selects values within given range
+  operator is inclusive, begin and end values are included
+  syntax
+    WHERE column_name BETWEEN value1 AND value2;
+Aliases
+  used to give a table or column a temporary name
+  often used to make column names more readable
+  only exists for duration of query
+  Syntax
+    for column
+      SELECT column_name AS alias_name
+      FROM table_name;
+    for tables
+      SELECT column_name(s)
+      FROM table_name AS alias_name;
+  if you will add spaces to alias_name then surround it within '""' or '[]'
+  combine columns under the same alias_name with '+ ',' +' between each column
+    SELECT column_name, column_name + ', ' + column_name AS Address
+  alias for tables
+    e.g.
+    SELECT o.OrderID, o.OrderDate, c.CustomerName
+    FROM Customers AS c, Orders AS o
+    WHERE c.CustomerName='Around the Horn' AND c.CustomerID=o.CustomerID;
+  aliases can be useful when
+    more than one table involved in query
+    functions are used in query
+    column names are to big or not very readable
+    two or more columns are combined together
+JOIN
+  used to combine rows from two or more tables based on a related column between them
+  types of JOIN
+    // notice some databases use the OUTER keyword
+    (INNER) JOIN: Returns records that have matching values in both tables
+    LEFT (OUTER) JOIN: Returns all records from the left table, and the matched records from the right table
+    RIGHT (OUTER) JOIN: Returns all records from the right table, and the matched records from the left table
+    FULL (OUTER) JOIN: Returns all records when there is a match in either left or right table
+INNER JOIN
+  selects records that have matching values in both tables
+  Syntax
+    FROM table1
+    INNER JOIN table2
+    ON table1.column_name = table2.column_name;  // join more tables by adding more inner join on
+Left JOIN
+  Returns all records from the left table, and the matched records from the right table
+    result is NULL from right side when no match
+    same syntax as JOIN
+Left JOIN
+  eturns all records from the right table, and the matched records from the left table
+    result is NULL from left side when no match
+    same syntax as JOIN
+FULL JOIN
+  eturns all records when there is a match in either left or right table
+  same syntax as JOIN
+self JOIN
+  is regular join but the table is joined with itself
+  syntax
+    FROM table1 T1, table1 T2 //T1 and T2 are different table aliases for the same table
+    WHERE condition;
+UNION operator
+  combine result set of two or more select statements
+  requirements:
+    Each SELECT statement within UNION must have the same number of columns
+    The columns must also have similar data types
+    The columns in each SELECT statement must also be in the same order
+  UNION Syntax    // selects distinct values by default
+    SELECT column_name(s) FROM table1
+    UNION
+    SELECT column_name(s) FROM table2;
+    UNION All Syntax   // duplicates allowed
+      SELECT column_name(s) FROM table1
+      UNION ALL
+      SELECT column_name(s) FROM table2;
+GROUP BY STATEMENT
+  The GROUP BY statement groups rows that have the same values into summary rows, like "find the number of customers in each country".
+  The GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.
+  syntax
+    FROM table_name
+    WHERE condition
+    GROUP BY column_name(s)
+    ORDER BY column_name(s);
+HAVING Clause
+  The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate Functions
+  syntax
+    FROM table_name
+    WHERE condition
+    GROUP BY column_name(s)
+    HAVING condition
+    ORDER BY column_name(s);
+EXISTS Operator
+  EXISTS operator is used to test for the existence of any record in a subquery.
+  The EXISTS operator returns true if the subquery returns one or more records.
+  syntax
+    SELECT column_name(s)
+    FROM table_name
+    WHERE EXISTS
+    (SELECT column_name FROM table_name WHERE condition);
+ANY and ALL Operators
+  ANY and ALL operators are used with a WHERE or HAVING clause.
+  The ANY operator returns true if any of the subquery values meet the condition.
+  The ALL operator returns true if all of the subquery values meet the condition.
+  ANY Syntax
+    WHERE column_name operator ANY
+    (SELECT column_name FROM table_name WHERE condition);
+  ALL Syntax
+    WHERE column_name operator ALL
+    (SELECT column_name FROM table_name WHERE condition);
+  any operator  - returns true if any of the subquery values meet the condition
+  ALL operator - returns true if all subquery values meet the condition
+SELECT INTO Statement
+  copeies data from one table into a new table
+  syntax  copy all columns into new table
+    SELECT *
+    INTO newtable [IN externaldb]
+    FROM oldtable
+    WHERE condition;
+  new table will have column names as defined by old table, use AS clause to name new coluns
+  SELECT INTO can also be used to create a new, empty table using the schema of another. Just add a WHERE clause that causes the query to return no data
+    SELECT * INTO newtable
+    FROM oldtable
+    WHERE 1 = 0;
+INSERT INTO SELECT Statement
+  INSERT INTO SELECT statement copies data from one table and inserts it into another table.
+     INSERT INTO SELECT requires that data types in source and target tables match
+     The existing records in the target table are unaffected
+    syntax copy all columns
+      INSERT INTO table2
+      SELECT * FROM table1
+      WHERE condition;
+      syntax copy some columns
+        INSERT INTO table2 (column1, column2, column3, ...)
+        SELECT column1, column2, column3, ...
+        FROM table1
+        WHERE condition;
+CASE Statement
+  CASE statement goes through conditions and returns a value when the first condition is met (like an IF-THEN-ELSE statement). So, once a condition is true, it will stop reading and return the result. If no conditions are true, it returns the value in the ELSE clause.
+  If there is no ELSE part and no conditions are true, it returns NULL.
+  syntax
+    CASE
+      WHEN condition1 THEN result1
+      WHEN condition2 THEN result2
+      WHEN conditionN THEN resultN
+      ELSE result
+    END;
+NULL Functions
+  solutions to getting null becase of optional columns with no data in some records
+  MySQL
+    The MySQL IFNULL() function lets you return an alternative value if an expression is NULL:
+    SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0))
+  FROM Products;
+    or we can use the COALESCE() function, like this:
+      SELECT ProductName, UnitPrice * (UnitsInStock + COALESCE(UnitsOnOrder, 0))
+      FROM Products;
+  SQL Server
+    The SQL Server ISNULL() function lets you return an alternative value when an expression is NULL:
+      SELECT ProductName, UnitPrice * (UnitsInStock + ISNULL(UnitsOnOrder, 0))
+      FROM Products;
+  MS Access
+    The MS Access IsNull() function returns TRUE (-1) if the expression is a null value, otherwise FALSE (0):
+      SELECT ProductName, UnitPrice * (UnitsInStock + IIF(IsNull(UnitsOnOrder), 0, UnitsOnOrder))
+      FROM Products;
+  Oracle
+    The Oracle NVL() function achieves the same result:
+      SELECT ProductName, UnitPrice * (UnitsInStock + NVL(UnitsOnOrder, 0))
+      FROM Products;
+Stored Procedures for SQL Server
+  What is a Stored Procedure?
+    A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
+    So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
+    You can also pass parameters to a stored procedure, so that the stored procedure can act based on the parameter value(s) that is passed.
+  Stored Procedure Syntax
+    CREATE PROCEDURE procedure_name
+    AS
+    sql_statement
+    GO;
+  Execute a Stored Procedure
+    EXEC procedure_name;
+comments
+  explanations or prevent exeution of statements
+  comments are not supported in MS Access databases
+  '--single line comment'
+  /* multi-line comment */
