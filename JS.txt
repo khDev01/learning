@@ -726,16 +726,16 @@ booleans
 		Boolean(NaN) // false
 		Boolean(0) // false
 	booleans can be Objects
-		normally Js booleans are primateve balues created from literals
+		normally Js booleans are primateve values created from literals
 			var x = false; // typeof x returns boolean
 		But booleans can also be defined as objects with the keyword new:
 			var y = new Boolean(false);// typeof y returns object
 		do not create boolean objects, they slow down execution speed and coplicate code
 comparison and logical operators
 	used to test for 'true' or 'false'
-	comparison operators - used in conditional statements to compare balues
+	comparison operators - used in conditional statements to compare values
 		== === != !== > < >= <=
-	logical operators - used to determine the logic between variable and balues
+	logical operators - used to determine the logic between variable and values
 		&& || !
 	conditional (ternary operator)
 		JS contains a conditional operator that assigns a value to a variable based on some condition
@@ -2684,7 +2684,234 @@ Finally, use the new JavaScript object in your page:
 Example
 <p id="demo"></p>
 
-<script>
-document.getElementById("demo").innerHTML =
-obj.employees[1].firstName + " " + obj.employees[1].lastName;
-</script>
+		<script>
+		document.getElementById("demo").innerHTML =
+		obj.employees[1].firstName + " " + obj.employees[1].lastName;
+		</script>
+
+JS forms
+	HTML fomr validation can be done by JS
+	if form field empty, function alerts a message and returns false to prevent submission
+		<script>
+		function validateForm() {
+		  var x = document.forms["myForm"]["fname"].value;
+		  if (x == "") {
+		    alert("Name must be filled out");
+		    return false;
+		  }
+		}
+		</script>
+		<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+		  Name: <input type="text" name="fname">
+		  <input type="submit" value="Submit">
+		</form>
+	can also validate numeric data
+		<script>
+			function myFunction() {
+			  var x, text;
+
+			  // Get the value of the input field with id="numb"
+			  x = document.getElementById("numb").value;
+
+			  // If x is Not a Number or less than one or greater than 10
+			  if (isNaN(x) || x < 1 || x > 10) {
+			    text = "Input not valid";
+			  } else {
+			    text = "Input OK";
+			  }
+			  document.getElementById("demo").innerHTML = text;
+			}
+		</script>
+	automatic html form validation
+		form validation can be performed automatically by the browsers
+		using 'required' attribute in html, no js
+	data validatoin
+		process of ensuring that user input is clean, correct and useful
+			typical validation
+				filled all required fields
+				entered a valid info in field such as nums in numeric field
+				Server side validation is performed by a web server, after input has been sent to the server
+				Client side validation is performed by a web browser, before input is sent to a web server
+	html constraint validation
+		based on:
+			Constraint validation HTML Input Attributes
+			Constraint validation CSS Pseudo Selectors
+			Constraint validation DOM Properties and Methods
+		input attributed
+			disabled 	Specifies that the input element should be disabled
+			max 	Specifies the maximum value of an input element
+			min 	Specifies the minimum value of an input element
+			pattern 	Specifies the value pattern of an input element
+			required 	Specifies that the input field requires an element
+			type  	Specifies the type of an input element
+		css pseudo Selectors
+			:disabled 	Selects input elements with the "disabled" attribute specified
+			:invalid 	Selects input elements with invalid values
+			:optional 	Selects input elements with no "required" attribute specified
+			:required 	Selects input elements with the "required" attribute specified
+			:valid 	Selects input elements with valid values
+JS validation API
+	constraint validation DOM methods
+		checkValidity() 	Returns true if an input element contains valid data.
+		setCustomValidity() 	Sets the validationMessage property of an input element.
+	If an input field contains invalid data, display a message:
+		The checkValidity() Method
+		<input id="id1" type="number" min="100" max="300" required>
+		<button onclick="myFunction()">OK</button>
+
+		<p id="demo"></p>
+
+		<script>
+		function myFunction() {
+		  var inpObj = document.getElementById("id1");
+		  if (!inpObj.checkValidity()) {
+		    document.getElementById("demo").innerHTML = inpObj.validationMessage;
+		  }
+		}
+	constraint validation DOM proterties
+		validity 	Contains boolean properties related to the validity of an input element.
+		validationMessage 	Contains the message a browser will display when the validity is false.
+		willValidate 	Indicates if an input element will be validated.
+	validity properties
+		validity property of input element contains a number of properties related to the validity data
+			customError 	Set to true, if a custom validity message is set.
+			patternMismatch 	Set to true, if an element's value does not match its pattern attribute.
+			rangeOverflow 	Set to true, if an element's value is greater than its max attribute.
+			rangeUnderflow 	Set to true, if an element's value is less than its min attribute.
+			stepMismatch 	Set to true, if an element's value is invalid per its step attribute.
+			tooLong 	Set to true, if an element's value exceeds its maxLength attribute.
+			typeMismatch 	Set to true, if an element's value is invalid per its type attribute.
+			valueMissing 	Set to true, if an element (with a required attribute) has no value.
+			valid 	Set to true, if an element's value is valid.
+		e.g.
+			The rangeOverflow Property
+				<input id="id1" type="number" max="100">    // if input field is > 100 display message
+				<button onclick="myFunction()">OK</button>
+
+				<p id="demo"></p>
+
+				<script>
+				function myFunction() {
+				  var txt = "";
+				  if (document.getElementById("id1").validity.rangeOverflow) {
+				    txt = "Value too large";
+				  }
+				  document.getElementById("demo").innerHTML = txt;
+				}
+				</script>
+
+
+
+
+
+
+
+
+
+js Objects
+	js - almost everything is an object
+	all js values, except primitives, are objects:
+		objects:
+			Dates
+			Maths
+			Regular expressions
+			Arrays
+			Functions
+			Objects
+		objects if defined with 'new':
+			boolean, numbers Strings
+	js primatives
+		primative value - value with no properties or Methods
+		primative data type - data that has a primative value
+		primative values are immutable
+			if x=3 you can change value of x but not the value of 3
+	objects are Variables
+		js vars can contain a single value
+		objects are vars with many values written as 'name : value'
+		named values are called properties
+		objects written as name value pairs are similar to:
+			Associative arrays in PHP
+			Dictionaries in Python
+			Hash tables in C
+			Hash maps in Java
+			Hashes in Ruby and Perl
+	object Methods
+		actions perfomed on objects
+		object properties can be both primative values, objects and Functions
+		object method = object property containing a function definition
+	creating objects -4 ways
+    Define and create a single object, using an object literal.
+    Define and create a single object, with the keyword new. // dont use use literal for simplicity
+    Define an object constructor, and then create objects of the constructed type.
+		object.create() function
+	objects are mutable - addressed by reference not value
+object properties
+ 	can be manipulated and some are read only
+	syntax for accessing properties
+		objectName.property
+		or
+			objectName["property"]
+		or
+			objectName[expression]  // // x = "age"; myobj[x]  expression must evaluate to a property name
+	for in loop - loop through the properties of an object
+		syntax
+			for (variable in object) {
+				// code to be executed once for each property
+			}
+	add new properties - by giving it a new property and value
+	 	syn
+			obj.newproperty = "new value";
+	delete properties - 'delete' keyword
+		syntax
+			delete obj.property;
+		deletes property and value
+		should not be used on predefined object properties - crash app
+	porperty attributs
+		value is a property's attribute
+		also include: enumerable, configurable and writeable
+		all attributes can be read but only value attribute van be changed if property is writeable
+	prototype properties
+		objects inhertit the properties of their prototype
+		'delete' a prototype property and ll objects inherited from prototype will be affected
+object Methods
+	actions performed on objects
+	syntax to access object method
+		obj.method()
+costructors
+	blueprint for creating many objects of the same tupe is to use an objject constructor function
+		syntax
+			function obj()
+			create objects of the same type:
+			let myNewObj = new obj()
+	cannot add new property to existing object constructors, to addi it you must add it within the constructor
+
+Function
+	'function' - define function
+	use functino decalration or function exprsession
+	function declaration
+		function functionName(parameters) {
+			// code to be executed
+		}
+		not executed until invoked
+	function expression
+		can be stroed in variable
+			let x = function (a, b) {return a * b};
+			now the variable can be used as the function
+				e.g. let z = x(4, 3);
+		as above a function name is not given(anonymous function) but just declared with 'function'
+			they are invoked using var name
+	function() constructor - avoid using
+		function() - built-in constructor to define a functon
+		using 'new' keyword - avoid using new keyword
+	self-invoking functions
+		Function expressions can be made "self-invoking".
+		A self-invoking expression is invoked (started) automatically, without being called.
+		Function expressions will execute automatically if the expression is followed by ().
+		You cannot self-invoke a function declaration.
+		You have to add parentheses around the function to indicate that it is a function expression:
+		(function () { // anonymous self invoking function
+			document.getElementById("demo").innerHTML = "Hello! I called myself";
+		})();
+	funcions can be used in expressions
+		var x = myFunction(4, 3) * 2;
+	arrow functions 
