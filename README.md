@@ -1,8 +1,9 @@
 # Skills:
 
-[HTML](#) [CSS]() [JavaScript]()
+HTML CSS JavaScript
 
-[C#](c#.md) [Python](python.md) [PHP](php.md) [Git](/Version%20Control/git.md) [Mark Down](markdown.md)
+C# Python PHP
+[Git](/Version%20Control/git.md) [Mark Down](markdown.md)
 
 [SDLC](sdlc.md)
 
