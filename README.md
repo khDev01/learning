@@ -1,6 +1,6 @@
 # Skills:
 
-[HTML](/Web%20Development/html.md) [CSS](/Web%20Development/css.md) [JavaScript](/Web%20Development/js.md)
+[HTML]() [CSS]() [JavaScript]()
 
 [C#](c#.md) [Python](python.md) [PHP](php.md) [Git](/Version%20Control/git.md) [Mark Down](markdown.md)
 
