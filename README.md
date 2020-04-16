@@ -1,19 +1,17 @@
 # Skills:
 
-HTML CSS JavaScript
+**HTML CSS JavaScript**
 
-C# Python PHP
-[Git](/Version%20Control/git.md) [Mark Down](markdown.md)
+**C# Python PHP**  
+**[Git](/Version%20Control/git.md) [Mark Down](markdown.md)**
 
-[SDLC](sdlc.md)
+**WordPress**
 
-CSS [SASS](sass.md)
+## To learn:
 
-# To learn:
-
-- CSS - SASS
+- SASS
 - JavaScript, JQUERY
-- PHP, Python, C#
+- Python, C#
 - Clean Code practices
 - Frameworks
 - Emmet
