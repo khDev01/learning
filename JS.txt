@@ -4,12 +4,14 @@
 * [ ] replace keywords with short versions such as JS for JavaScript
 
 # JavaScript
+programming languaused for the web, server programs like Node.js and databases like MongoDB  
+program behaviour of web pages  
+can change HTML Content, attributes and styles(CSS)  
 **Requirments:** none
 
-**Syntax:**  
+syntax:  
 `<script> js code </script>` // internal within html  
-<script  **src="myScript.js">**</script>// external - point to js file within html  
-<pre><code>sample <b>sample</b> sample<code></pre>
+`<script src="myScript.js"></script>`// external - point to js file within html  
 
 Javascript can be placed within head or body of html
 
@@ -37,6 +39,7 @@ best to use camelCase
 `/* multi-line comment */`
 
 Variables
+
 	let variable; // same as undefined if not already initialise
 	let string = "Hello";
 	let num = 10;
