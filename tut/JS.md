@@ -1,143 +1,97 @@
-* [ ] Replace all instances of 'myArr' to 'arr' and 'myArr1' to 'arr1' etc.
-* [ ] maybe replace JS type conversion section to a conversion table
-* [ ] once completed use change to markdown ctrl-shift-m
-* [ ] replace keywords with short versions such as JS for JavaScript
+<!-- cheat sheets -->
 
 # JavaScript
-**Requirments:** none
-
+**Requirments:** none  
 **Syntax:**  
-`<script> js code </script>` // internal within html  
-<script  **src="myScript.js">**</script>// external - point to js file within html  
-<pre><code>sample <b>sample</b> sample<code></pre>
-
-Javascript can be placed within head or body of html
-
-## Output
-display data in different ways:  
-&ensp;`innerHTML` write into HTML element  
-&ensp;`document.write()` write into HTML output (good for testing)  
-&ensp;`window.alert()` write to alert box  
-&ensp;`console.log()` write to browser console (for debugging)  
+`<script> code within HTML file </script>`  
+`<script  src="myExternalFile.js"></script>`
+### Output
+`document.write()` write into HTML output (good for testing)  
+`window.alert()` write to alert box  
+`console.log()` write to browser console (for debugging)  
 `document.getElementById('id').innerHTML` access HTML elements  
 **warning:** using document.write() after html document is lodaed will delete all existing HTML  
 `window.print()` prints current window content
 
-## Statements
-compose of values, operators, expressions, keywords and comments  
-	statements are executed one by one in order from top to bottom of file  
-	';' seperates JS statements  
-	multipul stasemnts are allowed on one line  
-whitespace is ignored  
-JS is case sensitive  
-Hyphens are not allowed in JavaScript. They are reserved for subtractions.  
-best to use camelCase  
-
 `// comment`  
 `/* multi-line comment */`
 
-Variables
-	let variable; // same as undefined if not already initialise
-	let string = "Hello";
-	let num = 10;
-	let float = 15.371;
-	let bool = true;
-	let arr = [red,green,blue];
-	let dog = { name : 'Spot', breed : 'Dalmatian' };
-	let notDefine = undefined;
-	let nothing = null; // typeof is an object but is null
-		undefined vs null
-		typeof undefined    // undefined
-		typeof null         // object
-		null === undefined  // false
-		null == undefined   // true
-	// constant
-	const constant = 9;
+### Data types
+`let variable;` // same as undefined  
+`let string = "Hello";`  
+`let num = 10;`  
+`let float = 15.371;`  
+`let bool = true;`  
+`let arr = [red,green,blue];`  
+`let dog = { name : 'Spot', breed : 'Dalmatian' };`  
+`let notDefine = undefined;`  
+`let nothing = null;`  
+**Undefined vs null**  
+```
+typeof undefined    // undefined
+typeof null         // object
+null == undefined   // true
+null === undefined  // false
+```
+`const constant = 9;`  
 
-		All JS datatypes have a 'valuOf()' and 'toString()' method
+All Datatypes have a 'valuOf()' and 'toString()' method  
 
-	typeof - operator to find type of variable
-		typeof "John" // Returns "string"
-		typeof 314  // Returns "number"
+`typeof "Returns data type"`  
 
-	primative data - simtle single data value
-		typeop operator returns these primative types
-			string, number, boolian, undefined
-	complex data
-		typeof operator returns either:
-			function
-			object - returns 'object' for objects, arrays and null
+**primative data** - simple single data value  
+&ensp;string, number, boolian, undefined  
+**complex data**  
+&ensp;function  
+&ensp;object - `typeof` returns 'object' for objects, arrays and null
 
-	JS identifiers rule
-		can contain letters, digits, underscores and dollar signs
-		must start with letter or '$'
-		reserved words cannot be used such as JS keywords
-Function - block of code to perform a particular task
+**Identifiers** - contain letters, digits, underscores and dollar signs  
+Start with a **letter** or **$**  
+
+**Function** - block of code to perform a particular task
 	function is executed when it is invoked
-	function name(parameter1, parameter2, parameter3) {
-	  // code to be executed
+```
+function name(parameter1, parameter2, parameter3) {
+	// code to be executed
+}
+```
+### Obejects
+**properties** and **methods**  
+properties are writen in **name:value** pairs:  
+&ensp;&ensp;`let myObj = {shape:"square", size:"500", color:"white"};`  
+methods are actions that can be preformed on objects  
+method = function stored as a property:  
+```
+let person = {
+	firstName: "John",
+	lastName : "Doe",
+	fullName : function() {
+		return this.firstName + " " + this.lastName;
 	}
+};
+```
+**access property** `obj.property` or `obj["property"]`  
+**access method** &ensp;`obj.method()`  
 
-	Local scope
-		variables decalared in a function become local to it
-		local variables are created when a func starts and deleted when func complete
-			variables can only be accessde from within the function
-			// cannot use myVar (outside of scope)
+var declared with `new` creates a object
 
-			function myFunction() {
-			  let myVar = "hello";
-			  // can use myVar (within scope)
-			}
+comparing objects return false: (x==y) and (x===y)
 
-			// cannot use myVar (outside of scope)
+all obj have a `toString()` method
 
-Obejects
-	objects have properties and methods
-	properties are writen in 'name:value' pairs:
-		let myObj = {shape:"square", size:"500", color:"white"};
-		access object properties
-			'objName.propertyName' or 'objName["propertyName"]'
-	methods are actions that can be preformed on okjects
-	a method is a function stored as a property:
-		let person = {
-		  firstName: "John",
-		  lastName : "Doe",
-		  id       : 5566,
-		  fullName : function() {
-		    return this.firstName + " " + this.lastName;
-		  }
-		};
-		access object methods
-			'objName.methodName()'
-			accessing a method without '()' returns the function definition
-	Avoid declaring strings, numbers and booleans as objects
-		* as they complicate code and slow down execution speed
-		when a var is declared with the 'new' keyword the var is created as an object
-	let x = new String();        // Declares x as a String object
-	let y = new Number();        // Declares y as a Number object
-	let z = new Boolean();       // Declares z as a Boolean object
+`this` keyword refers to owner
 
-	comparing JS oblects will always return false (x==y) and (x===y)
+### Events
+`<element event='some JavaScript'> `  
+e.g. `<button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>`  
+or call a func:  `<button onclick="mytimefunc()">The time is?</button>`  
+**common HTML events**  
+&ensp;&ensp;`onchange`, `onclick`, `onmouseover`, `onmouseout`, `onkeydown`, `onload`  
 
-	all JS obj have a toString() method
-
-	'this' keyword
-		in a function definition this refers to the owner of the functon
-Events
-	HTML events cause "something" to happen to HTML elements
-	when JS is used in HTML, JS can "react" on these events
-	JS can execute code when events are detected
-	<element event='some JavaScript'> or <element event="some JavaScript">
-	e.g. <button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
-	or call a func:  <button onclick="displayDate()">The time is?</button>
-	common HTML events
-	onchange, onclick, onmouseover, onmouseout, onkeydown, onload
-	event handlers can handle and verify, user input, user actions and browser actions
+event handlers can handle and verify, user input, user actions and browser actions
 
 Strings
-	let squote = 'single quotes';
-	let dquote = "or double";
-	find length of strings with the built-in 'lenght' property
+	`lenght` property
 		let txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		document.getElementById("demo").innerHTML = txt.length;
 	escape char '\' turns special chars into string chars
@@ -2263,7 +2217,7 @@ JS versions
 	Object.getOwnPropertyDescriptor(object, property)
 
 	// Returns all properties as an array
-	Object.getOwnPropertyNames(object)
+	Object.getOwnpropertys(object)
 
 	// Returns enumerable properties as an array
 	Object.keys(object)
