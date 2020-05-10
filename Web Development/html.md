@@ -49,3 +49,20 @@ content sectioning
 
 ```
 ~~
+
+
+# bootstrap
+
+* Fron-end framework for faster and easier web development
+
+### Advantages
+
+* Easy to use
+* Responsive
+* Mobile-first approach
+* browser compatibility; supported by all modern browsers
+
+## Ways of using bootstrap
+
+1. Download [bootstrap](http://getbootstrap.com/getting-started/)
+2. include bootstrap from CDN (content Delivery Network)
