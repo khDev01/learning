@@ -1,13 +1,13 @@
 # Cheatsheet
-'<panel>' - primary container
-  <pr> - panel row
-		<pc> - panel column
-			<image>
-			<button>
-			<text> - text area
-				<text type=‘Form Data’>
-					<prefix> - affix content added in front
-					<suffix> - affix content added at end
+'&lt;panel>' - primary container
+  &lt;pr> - panel row
+		&lt;pc> - panel column
+			&lt;image>
+			&lt;button>
+			&lt;text> - text area
+				&lt;text type=‘Form Data’>
+					&lt;prefix> - affix content added in front
+					&lt;suffix> - affix content added at end
 
 Escape characters:
 & - &amp; or &#38;
