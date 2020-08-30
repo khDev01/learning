@@ -10,8 +10,8 @@
 					* &lt;suffix> - affix content added at end
 
 Escape characters:
-& - &amp; or &#38;
-< - &lt; or &#60;
-> - &gt; or &#62;
-' - &apos; or &#39;
+& - amp; or #38;
+< - lt; or #60;
+> - gt; or #62;
+' - apos; or #39;
 
