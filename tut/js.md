@@ -76,3 +76,29 @@ for (variable of iterable) { // code block to be executed }
 while (condition) { // code block to be executed }
 
 do { // code block to be executed } while (condition);
+
+
+var operand1 = Math.floor(Math.random() * 101);
+var operand2 = Math.floor(Math.random() * 101);
+var theSum = operand1 + operand2;
+
+function addIntegers() {
+  operand1 = Math.floor(Math.random() * 101);
+  operand2 = Math.floor(Math.random() * 101);
+  theSum = operand1 + operand2;
+  while (theSum > 100){
+  	if (operand1 >= 50){
+  		operand2 =  Math.floor(Math.random() * 51);
+    }
+  	else {
+      operand2 =  Math.floor(Math.random() * 101);
+    }
+    theSum = operand1 + operand2;
+  }
+  document.getElementById("op1").innerHTML = operand1;
+  document.getElementById("op2").innerHTML = operand2;
+  //document.getElementById("answer").innerHTML = result;
+
+  console.log(operand1.toString() + " + " + operand2.toString());
+  console.log(result);
+}
